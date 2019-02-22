@@ -1,4 +1,5 @@
-import { User, AuthUser } from 'src/app/models/user/user';
+import { User } from 'src/app/models/user';
+import { AuthUser } from 'src/app/models/auth-user';
 
 export class FakeServer {
     private static fakeUserStorage:Array<AuthUser> = [

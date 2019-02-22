@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { User, AuthUser, StoredUser } from 'src/app/models/user/user';
+import { User } from 'src/app/models/user';
+import { StoredUser } from 'src/app/models/stored-user';
 import { RequestService } from '../request/request.service';
+import { Subject, Observable } from 'rxjs';
+import { initDomAdapter } from '@angular/platform-browser/src/browser';
 
 
 @Injectable({
@@ -9,22 +12,23 @@ import { RequestService } from '../request/request.service';
 export class AuthService {
 
   constructor(private requestService:RequestService) {
-    
-    let storedUser:StoredUser = JSON.parse(localStorage.getItem('user'));
-    
-    if(storedUser){
-      
-      this.isAuth = true;
-    }
-    else {
-      console.log(123);
-      this.isAuth = false;
-    }
+    this._isAuth = new Subject<boolean>();
+    this.tryAuth();    
   }
 
-  public isAuth:boolean;
 
-  public logIn(user:User){
+
+  private _isAuth: Subject<boolean>;
+  public get isAuth(): Observable<boolean> {
+    return this._isAuth.asObservable();
+  }
+
+  public tryAuth() {
+    let storedUser:StoredUser = JSON.parse(localStorage.getItem('user'));
+    this._isAuth.next(!!storedUser);
+  }
+
+  public logIn(user: User):Observable<boolean> {
     this.logOut();
     let token:string = this.requestService.GetRegisteredUserToken(user);
     if(token){
@@ -32,12 +36,16 @@ export class AuthService {
       storedUser.login = user.login;
       storedUser.token = token;
       localStorage.setItem('user',JSON.stringify(storedUser));
-      this.isAuth = true;
+      this._isAuth.next(true);
     }
+
+    return this.isAuth;
   }
 
   public logOut(){
     localStorage.removeItem('user');
-    this.isAuth = false;
+    this._isAuth.next(false);
   }
+
 }
+

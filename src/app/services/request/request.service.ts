@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/models/user/user';
+import { User } from 'src/app/models/user';
 import { FakeServer } from 'src/app/helpers/fake-server/fake-server';
 
 @Injectable({

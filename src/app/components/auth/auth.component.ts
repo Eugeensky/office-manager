@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { User } from 'src/app/models/user/user';
+import { User } from 'src/app/models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -23,15 +24,13 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  
-
   public logIn(){
-    
     let user: User = this.authForm.value;
-    this.authService.logIn(user);
-    if(!this.authService.isAuth){
-      this.errorMessage = "INVALID LOGIN OR PASS";
-    }
+    this.authService.logIn(user).subscribe(isAuthenticated => {
+      if(!isAuthenticated){
+        this.errorMessage = "INVALID LOGIN OR PASS";
+      }
+    });
     this.router.navigateByUrl('');
   }
 }

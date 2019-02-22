@@ -1,6 +1,6 @@
-@import "../../styles_lib/colors.scss";
+@import "../../styles-lib/colors.scss";
 
-.header,.header__logo,.header__menu,.menu__item{
+.header, .header__logo, .header__menu, .menu__item {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
@@ -8,6 +8,7 @@
     height: 100%;
     user-select: none;
 }
+
 .header {
     height: 50px;
     background-color:$MainColor;
@@ -16,14 +17,16 @@
     padding: 5px 20px 0 20px;
     border-bottom: 4px solid $SecondColor;
 }
+
 .menu__item {
     padding: 0 10px;
     cursor: pointer;
     font-size: 1.6rem;
-    transition:.2s all ease;
+    transition: .2s all ease;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+
     &:hover{
-        background-color:$SecondColor;
+        background-color: $SecondColor;
     }
 }

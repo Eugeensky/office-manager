@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +26,7 @@ import { RequestService } from './services/request/request.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService,RequestService, AuthGuard],
+  providers: [AuthService, RequestService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
