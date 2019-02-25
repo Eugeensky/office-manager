@@ -3,7 +3,6 @@ import { User } from 'src/app/models/user';
 import { StoredUser } from 'src/app/models/stored-user';
 import { RequestService } from '../request/request.service';
 import { Subject, Observable } from 'rxjs';
-import { initDomAdapter } from '@angular/platform-browser/src/browser';
 
 
 @Injectable({
@@ -11,19 +10,22 @@ import { initDomAdapter } from '@angular/platform-browser/src/browser';
 })
 export class AuthService {
 
+  private _isAuth: Subject<boolean> = new Subject<boolean>();
   constructor(private requestService: RequestService) {
-    this._isAuth = new Subject<boolean>();
     this.tryAuth();
   }
 
-  private _isAuth: Subject<boolean>;
   public get isAuth(): Observable<boolean> {
     return this._isAuth.asObservable();
   }
 
   public tryAuth() {
-    const storedUser: StoredUser = JSON.parse(localStorage.getItem('user'));
-    this._isAuth.next(!!storedUser);
+    try {
+      const storedUser: StoredUser = JSON.parse(localStorage.getItem('user'));
+      this._isAuth.next(!!storedUser);
+    } catch {
+      this._isAuth.next(false);
+    }
   }
 
   public logIn(user: User): Observable<boolean> {
@@ -46,4 +48,3 @@ export class AuthService {
   }
 
 }
-

@@ -33,13 +33,13 @@
         font-size: 1.4rem;
     }
 
-    & p {
+    p {
         color: $MainColor;
         font-size: 2rem;
         font-weight: 600;
     }
 
-    & input:focus {
+    input:focus {
         outline: none;
         box-shadow: 0 0 3px 3px $SecondColor;
     }
