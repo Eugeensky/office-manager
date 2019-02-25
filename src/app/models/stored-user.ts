@@ -1,4 +1,4 @@
 export class StoredUser {
-    login:string;
-    token:string;
+    login: string;
+    token: string;
 }

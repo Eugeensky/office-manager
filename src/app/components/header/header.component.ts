@@ -13,19 +13,17 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   @Input() title;
-  
-  public isAuth:boolean;
 
-  constructor(private authService:AuthService,private router:Router) { }
+  public isAuth: boolean;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.authService.isAuth.subscribe(isAuth => {
-      this.isAuth = isAuth;      
-    });
+    this.authService.isAuth.subscribe(isAuth => this.isAuth = isAuth);
     this.authService.tryAuth();
   }
 
-  logOut(){
+  logOut() {
     this.authService.logOut();
     this.router.navigateByUrl('auth');
   }

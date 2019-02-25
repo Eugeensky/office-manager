@@ -8,7 +8,8 @@ import { FakeServer } from 'src/app/helpers/fake-server/fake-server';
 export class RequestService {
 
   constructor() { }
-  public GetRegisteredUserToken(user:User):string{
+
+  public GetRegisteredUserToken(user: User): string {
     return FakeServer.GetRegisteredUserToken(user);
   }
 }

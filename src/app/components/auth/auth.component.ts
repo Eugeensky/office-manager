@@ -13,22 +13,22 @@ import { Observable } from 'rxjs';
 export class AuthComponent implements OnInit {
 
   public authForm: FormGroup;
-  public errorMessage:string;
+  public errorMessage: string;
 
-  constructor(private authService:AuthService, private router:Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authForm = new FormGroup({
-      login: new FormControl('',Validators.required),
-      password : new FormControl('',Validators.required)
+      login: new FormControl('', Validators.required),
+      password : new FormControl('', Validators.required)
     });
   }
 
-  public logIn(){
-    let user: User = this.authForm.value;
+  public logIn() {
+    const user: User = this.authForm.value;
     this.authService.logIn(user).subscribe(isAuthenticated => {
-      if(!isAuthenticated){
-        this.errorMessage = "INVALID LOGIN OR PASS";
+      if (!isAuthenticated) {
+        this.errorMessage = 'INVALID LOGIN OR PASS';
       }
     });
     this.router.navigateByUrl('');

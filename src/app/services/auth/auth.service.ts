@@ -11,12 +11,10 @@ import { initDomAdapter } from '@angular/platform-browser/src/browser';
 })
 export class AuthService {
 
-  constructor(private requestService:RequestService) {
+  constructor(private requestService: RequestService) {
     this._isAuth = new Subject<boolean>();
-    this.tryAuth();    
+    this.tryAuth();
   }
-
-
 
   private _isAuth: Subject<boolean>;
   public get isAuth(): Observable<boolean> {
@@ -24,25 +22,25 @@ export class AuthService {
   }
 
   public tryAuth() {
-    let storedUser:StoredUser = JSON.parse(localStorage.getItem('user'));
+    const storedUser: StoredUser = JSON.parse(localStorage.getItem('user'));
     this._isAuth.next(!!storedUser);
   }
 
-  public logIn(user: User):Observable<boolean> {
+  public logIn(user: User): Observable<boolean> {
     this.logOut();
-    let token:string = this.requestService.GetRegisteredUserToken(user);
-    if(token){
-      let storedUser:StoredUser = new StoredUser();
+    const token: string = this.requestService.GetRegisteredUserToken(user);
+    if (token) {
+      const storedUser: StoredUser = new StoredUser();
       storedUser.login = user.login;
       storedUser.token = token;
-      localStorage.setItem('user',JSON.stringify(storedUser));
+      localStorage.setItem('user', JSON.stringify(storedUser));
       this._isAuth.next(true);
     }
 
     return this.isAuth;
   }
 
-  public logOut(){
+  public logOut() {
     localStorage.removeItem('user');
     this._isAuth.next(false);
   }
