@@ -8,17 +8,14 @@ export class SessionService {
   constructor() { }
 
   public setSession(params: any) {
-    if (params.login && params.token && params.validUntil) {
-      const session: Session = new Session();
-      session.login = params.login;
-      session.token = params.token;
-      session.validUntil = new Date(params.validUntil);
-      if ( session && new Date(session.validUntil) > new Date() ) {
+    try {
+      const session = Session.getFromParams(params);
+      if ( new Date(session.validUntil) > new Date() ) {
         localStorage.setItem('session', JSON.stringify(session));
       } else {
         this.redirectToLogin();
       }
-    } else {
+    } catch {
       this.redirectToLogin();
     }
   }
@@ -30,8 +27,8 @@ export class SessionService {
 
   public isSessionValid(): boolean {
     try {
-      const session: Session = JSON.parse(localStorage.getItem('session'));
-      if ( session && session.validUntil > new Date() ) {
+      const session: Session = Session.getFromParams(JSON.parse(localStorage.getItem('session')));
+      if ( session.validUntil > new Date() ) {
         return true;
       }
       this.redirectToLogin();
@@ -43,6 +40,6 @@ export class SessionService {
   }
 
   private redirectToLogin() {
-    window.location.href = 'http://localhost:4200/login/';
+    window.location.href = 'http://localhost:4200/';
   }
 }

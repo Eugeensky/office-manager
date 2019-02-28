@@ -3,8 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from 'projects/shared/src/public_api';
 import { HomeComponent } from './components/home/home.component';
+import { SharedModule } from 'projects/shared/src/lib/shared.module';
+
+
 
 
 @NgModule({
