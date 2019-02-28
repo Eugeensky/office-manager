@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '../../services/session/session.service';
 
 @Component({
-  selector: 'shared',
+  selector: 'shared-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

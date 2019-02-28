@@ -43,6 +43,6 @@ export class SessionService {
   }
 
   private redirectToLogin() {
-    window.location.href = 'http://localhost:4200/login/';
+    window.location.href = 'http://localhost:4200/';
   }
 }
