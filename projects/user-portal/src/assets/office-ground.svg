@@ -5,14 +5,17 @@
 <style type="text/css">
 	.st0{fill:#CCCCCC;}
 	.st1{fill:#95CACE;stroke:#000000;stroke-width:4;stroke-miterlimit:10;}
-	.st2{fill:none;stroke:#000000;stroke-width:4;stroke-miterlimit:10;}
+	.st2{fill:#95CACE;}
+	.st3{fill:none;stroke:#000000;stroke-width:4;stroke-miterlimit:10;}
 </style>
 <g>
-	<rect x="2" y="2" class="st0" width="596" height="196"/>
-	<path d="M596,4v192H4V4H596 M600,0H0v200h600V0L600,0z"/>
+	<rect class="st0" width="600" height="200"/>
 </g>
-<polyline class="st1" points="400,196 400,100 300,100 200,100 200,196 "/>
-<line class="st2" x1="300" y1="100" x2="300" y2="200"/>
 <rect x="75" y="75" class="st1" width="50" height="50"/>
 <rect x="475" y="75" class="st1" width="50" height="50"/>
+<g>
+	<rect x="202" y="106" class="st2" width="196" height="96"/>
+	<path d="M396,108v92H204v-92H396 M400,104H200v100h200V104L400,104z"/>
+</g>
+<line class="st3" x1="300" y1="104" x2="300" y2="204"/>
 </svg>

@@ -10,11 +10,12 @@ export class SessionService {
   public setSession(params: any) {
     try {
       const session = Session.getFromParams(params);
-      if ( new Date(session.validUntil) > new Date() ) {
+      if ( session.isValid()) {
         localStorage.setItem('session', JSON.stringify(session));
       } else {
         this.redirectToLogin();
       }
+
     } catch {
       this.redirectToLogin();
     }
@@ -28,7 +29,7 @@ export class SessionService {
   public isSessionValid(): boolean {
     try {
       const session: Session = Session.getFromParams(JSON.parse(localStorage.getItem('session')));
-      if ( session.validUntil > new Date() ) {
+      if ( session.isValid() ) {
         return true;
       }
       this.redirectToLogin();

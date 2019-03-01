@@ -15,7 +15,10 @@ export class FloorsResolveService implements Resolve<FloorInfo[]> {
   FloorInfo[] | Observable<FloorInfo[]> | Promise<FloorInfo[]> {
     try {
       const session: Session = Session.getFromParams(JSON.parse(localStorage.getItem('session')));
-      return FakeServer.getFloorsInfo(session);
+      if (session.isValid()) {
+        return FakeServer.getFloorsInfo(session);
+      }
+      return null;
     } catch {
       return null;
     }

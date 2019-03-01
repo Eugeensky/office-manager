@@ -14,8 +14,8 @@
 <rect x="75" y="75" class="st1" width="50" height="50"/>
 <rect x="475" y="75" class="st1" width="50" height="50"/>
 <g>
-	<rect x="202" y="102" class="st2" width="196" height="96"/>
-	<path d="M396,104v92H204v-92H396 M400,100H200v100h200V100L400,100z"/>
+	<rect x="202" y="106" class="st2" width="196" height="96"/>
+	<path d="M396,108v92H204v-92H396 M400,104H200v100h200V104L400,104z"/>
 </g>
-<line class="st3" x1="300" y1="100" x2="300" y2="200"/>
+<line class="st3" x1="300" y1="104" x2="300" y2="204"/>
 </svg>

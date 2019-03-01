@@ -3,14 +3,10 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 600 100" style="enable-background:new 0 0 600 100;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#CCCCCC;stroke:#000000;stroke-width:8;stroke-miterlimit:10;}
+	.st0{fill:#CCCCCC;}
 	.st1{fill:#95CACE;}
 </style>
-<polyline class="st0" points="0.5,100.5 0.5,0.5 600.5,0.5 600.5,100.5 "/>
-<g>
-	<rect x="72.5" y="22.5" class="st1" width="55" height="55"/>
-	<path d="M125,25v50H75V25H125 M130,20H70v60h60V20L130,20z"/>
-</g>
+<rect class="st0" width="600" height="100"/>
 <g>
 	<rect x="172.5" y="22.5" class="st1" width="55" height="55"/>
 	<path d="M225,25v50h-50V25H225 M230,20h-60v60h60V20L230,20z"/>
@@ -22,9 +18,5 @@
 <g>
 	<rect x="372.5" y="22.5" class="st1" width="55" height="55"/>
 	<path d="M425,25v50h-50V25H425 M430,20h-60v60h60V20L430,20z"/>
-</g>
-<g>
-	<rect x="472.5" y="22.5" class="st1" width="55" height="55"/>
-	<path d="M525,25v50h-50V25H525 M530,20h-60v60h60V20L530,20z"/>
 </g>
 </svg>

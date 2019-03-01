@@ -1,6 +1,7 @@
 @import "../../styles-lib/colors.scss";
 
 .footer {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     height: 50px;

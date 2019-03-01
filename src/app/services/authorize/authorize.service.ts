@@ -10,7 +10,7 @@ export class AuthorizeService {
 
   public logIn(user: User): boolean {
     const userInfo: AuthResponse = FakeServer.getUserInfo(user);
-    if ( userInfo && userInfo.validUntil > new Date() ) {
+    if ( userInfo && userInfo.isRegistred && userInfo.validUntil > Date.now() ) {
       this.redirectToApp(userInfo);
       return true;
     }

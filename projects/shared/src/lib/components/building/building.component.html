@@ -1,10 +1,11 @@
-<div class="building">
+<div class="building" [style.max-width]="maxWidth">
   <div class="building__roof">
       <img src="assets/office-roof.svg" >
       <img src="assets/office-roof.svg" >
   </div>
-  <div class="building__floor" *ngFor="let floorInfo of floorsInfo">
-    <span>{{floorInfo.requestCount}}</span>
+  <div class="building__floor" *ngFor="let floorInfo of floorsInfo" >
+    <div class="building__floor-number">{{floorInfo.floor}}</div>
+    <div class="building__floor-requests">{{floorInfo.requestCount}}</div>
     <img src="assets/office-floor.svg" >
   </div>
   <div class="building__ground">
