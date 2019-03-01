@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { User } from 'src/app/models/user';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { AuthorizeService } from 'src/app/services/authorize/authorize.service';
+import { User } from 'projects/shared/src/public_api';
+
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +14,7 @@ export class AuthComponent implements OnInit {
   public authForm: FormGroup;
   public errorMessage: string;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthorizeService) { }
 
   ngOnInit() {
     this.authForm = new FormGroup({
@@ -26,11 +25,8 @@ export class AuthComponent implements OnInit {
 
   public logIn() {
     const user: User = this.authForm.value;
-    this.authService.logIn(user).subscribe(isAuthenticated => {
-      if (!isAuthenticated) {
-        this.errorMessage = 'INVALID LOGIN OR PASS';
-      }
-    });
-    this.router.navigateByUrl('');
+    if (!this.authService.logIn(user)) {
+      this.errorMessage = 'INVALID LOGIN OR PASS';
+    }
   }
 }
