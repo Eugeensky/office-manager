@@ -1,14 +1,45 @@
 <div class="building" [style.max-width]="maxWidth">
-  <div class="building__roof">
-      <img src="assets/office-roof.svg" >
-      <img src="assets/office-roof.svg" >
+  <div class="building__roof roof">
+    <div class="roof__peak">
+      <div class="roof__windows">
+        <div class="roof__window"></div>
+        <div class="roof__window"></div>
+        <div class="roof__window"></div>
+      </div>
+      <img class="roof__bg-img bg-img" src="assets/gray-bg-1x6.svg" >
+    </div>
+    <div class="roof__peak">
+      <div class="roof__windows">
+        <div class="roof__window"></div>
+        <div class="roof__window"></div>
+        <div class="roof__window"></div>
+      </div>
+      <img class="roof__bg-img bg-img" src="assets/gray-bg-1x6.svg" >
+    </div>
   </div>
-  <div class="building__floor" *ngFor="let floorInfo of floorsInfo" >
-    <div class="building__floor-number">{{floorInfo.floor}}</div>
-    <div class="building__floor-requests">{{floorInfo.requestCount}}</div>
-    <img src="assets/office-floor.svg" >
+  <div class="building__floor floor" *ngFor="let floorInfo of floorsInfo" >
+    <div class="floor__windows">
+        <div class="floor__window window">
+          <span class="window__content window__content--caption">Floor#</span>
+          <span class="window__content">{{floorInfo.floor}}</span>
+        </div>
+        <div class="floor__window window"></div>
+        <div class="floor__window window"></div>
+        <div class="floor__window window"></div>
+        <div class="floor__window window">
+          <span class="window__content window__content--caption">Requests:</span>
+          <span class="window__content">{{floorInfo.requestCount}}</span>
+        </div>
+    </div>
+    <img class="floor__bg-img bg-img" src="assets/gray-bg-1x6.svg" >
   </div>
-  <div class="building__ground">
-      <img src="assets/office-ground.svg" >
+  <div class="building__ground ground">
+    <div class="ground__windows">
+      <div class="ground__window"></div>
+      <div class="ground__door"></div>
+      <div class="ground__window"></div>
+    </div>
+    <img class="ground__bg-img bg-img" src="assets/gray-bg-1x6.svg" >
+    <img class="ground__bg-img bg-img" src="assets/gray-bg-1x6.svg" >
   </div>
 </div>

@@ -4,19 +4,6 @@
 	 viewBox="0 0 600 100" style="enable-background:new 0 0 600 100;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#CCCCCC;}
-	.st1{fill:#95CACE;}
 </style>
 <rect class="st0" width="600" height="100"/>
-<g>
-	<rect x="172.5" y="22.5" class="st1" width="55" height="55"/>
-	<path d="M225,25v50h-50V25H225 M230,20h-60v60h60V20L230,20z"/>
-</g>
-<g>
-	<rect x="272.5" y="22.5" class="st1" width="55" height="55"/>
-	<path d="M325,25v50h-50V25H325 M330,20h-60v60h60V20L330,20z"/>
-</g>
-<g>
-	<rect x="372.5" y="22.5" class="st1" width="55" height="55"/>
-	<path d="M425,25v50h-50V25H425 M430,20h-60v60h60V20L430,20z"/>
-</g>
 </svg>
