@@ -9,7 +9,7 @@ export class SessionService {
 
   public setSession(params: any) {
     try {
-      const session = this.getSessionFromParams(params);
+      const session = new Session(params);
       if ( session.isValid ) {
         localStorage.setItem('session', JSON.stringify(session));
       } else {
@@ -28,7 +28,7 @@ export class SessionService {
 
   public isSessionValid(): boolean {
     try {
-      const session = this.getSessionFromParams(JSON.parse(localStorage.getItem('session')));
+      const session = new Session(JSON.parse(localStorage.getItem('session')));
       if ( session.isValid ) {
         return true;
       }
@@ -37,19 +37,6 @@ export class SessionService {
     } catch {
       this.redirectToLogin();
       return false;
-    }
-  }
-
-
-  public getSessionFromParams(params: any): Session {
-    if (params.login && params.token && params.validUntil) {
-      const session: Session = new Session();
-      session.login = params.login;
-      session.token = params.token;
-      session.validUntil = params.validUntil;
-      return session;
-    } else {
-      throw new Error('Invalid params');
     }
   }
 

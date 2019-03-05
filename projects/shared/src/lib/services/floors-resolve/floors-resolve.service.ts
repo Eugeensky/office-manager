@@ -19,7 +19,7 @@ export class FloorsResolveService implements Resolve<FloorInfo[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     FloorInfo[] | Observable<FloorInfo[]> | Promise<FloorInfo[]> {
     try {
-      const session: Session = this.sessionService.getSessionFromParams(JSON.parse(localStorage.getItem('session')));
+      const session: Session = new Session(JSON.parse(localStorage.getItem('session')));
       if (session.isValid) {
         return FakeServer.getFloorsInfo(session);
       }
