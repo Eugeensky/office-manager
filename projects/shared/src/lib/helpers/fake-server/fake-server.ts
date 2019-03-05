@@ -27,7 +27,7 @@ const userFloorsInfo: FloorInfo[] = [
 export class FakeServer {
 
   public static getUserInfo(user: User): AuthResponse {
-    const userSessionInfo = userStorage.find(x => x.login === user.login && x.password === user.password);
+    const userSessionInfo = userStorage.find(storedUser => storedUser.login === user.login && storedUser.password === user.password);
     if (userSessionInfo) {
       return {
         isRegistred: true,
@@ -47,7 +47,7 @@ export class FakeServer {
   }
 
   public static getFloorsInfo(session: Session): FloorInfo[] {
-    const user = userStorage.find(x => x.login === session.login && x.token === session.token);
+    const user = userStorage.find(storedUser => storedUser.login === session.login && storedUser.token === session.token);
     if (user && user.role === 'admin') {
       return adminFloorsInfo.reverse();
     } else if (user && user.role === 'user') {
