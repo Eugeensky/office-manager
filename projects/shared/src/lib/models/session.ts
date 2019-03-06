@@ -1,11 +1,9 @@
 export class Session {
 
   constructor(params: any = {}) {
-    if (params.login && params.token && params.validUntil) {
-      this.login = params.login;
-      this.token = params.token;
-      this.validUntil = params.validUntil;
-    }
+    this.login = params.login;
+    this.token = params.token;
+    this.validUntil = params.validUntil;
   }
 
   login: string;
