@@ -8,17 +8,15 @@ export class SessionService {
   constructor() { }
 
   public setSession(params: any) {
-    if (params.login && params.token && params.validUntil) {
-      const session: Session = new Session();
-      session.login = params.login;
-      session.token = params.token;
-      session.validUntil = new Date(params.validUntil);
-      if ( session && new Date(session.validUntil) > new Date() ) {
+    try {
+      const session = new Session(params);
+      if ( session.isValid ) {
         localStorage.setItem('session', JSON.stringify(session));
       } else {
         this.redirectToLogin();
       }
-    } else {
+
+    } catch {
       this.redirectToLogin();
     }
   }
@@ -30,8 +28,8 @@ export class SessionService {
 
   public isSessionValid(): boolean {
     try {
-      const session: Session = JSON.parse(localStorage.getItem('session'));
-      if ( session && session.validUntil > new Date() ) {
+      const session = new Session(JSON.parse(localStorage.getItem('session')));
+      if ( session.isValid ) {
         return true;
       }
       this.redirectToLogin();

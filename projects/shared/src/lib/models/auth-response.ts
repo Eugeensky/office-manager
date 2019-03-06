@@ -3,5 +3,5 @@ export class AuthResponse {
   login: string;
   role: string;
   token: string;
-  validUntil: Date;
+  validUntil: number;
 }

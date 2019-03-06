@@ -12,4 +12,5 @@ export * from './lib/components/footer/footer.component';
 export * from './lib/components/header/header.component';
 export * from './lib/components/login/login.component';
 export * from './lib/components/spinner/spinner.component';
+export * from './lib/components/building/building.component';
 export * from './lib/services/session/session.service';

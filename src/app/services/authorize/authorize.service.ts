@@ -9,8 +9,8 @@ export class AuthorizeService {
   constructor() { }
 
   public logIn(user: User): boolean {
-    const userInfo: AuthResponse = FakeServer.GetUserInfo(user);
-    if ( userInfo && userInfo.validUntil > new Date() ) {
+    const userInfo: AuthResponse = FakeServer.getUserInfo(user);
+    if ( userInfo && userInfo.isRegistred && userInfo.validUntil > Date.now() ) {
       this.redirectToApp(userInfo);
       return true;
     }

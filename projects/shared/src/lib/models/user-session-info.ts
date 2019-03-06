@@ -3,5 +3,5 @@ export class UserSessionInfo {
   role: string;
   password: string;
   token: string;
-  validUntil: Date;
+  validUntil: number;
 }
