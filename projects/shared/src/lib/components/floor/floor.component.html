@@ -1,0 +1,32 @@
+<p class="floor-number">
+  Floor #{{floorNumber}}
+</p>
+<div class="floor-area">
+  <img class="floor-area__bg-img" src="assets/gray-bg-16x10.svg">
+  <div class="floor-area__floor floor">
+    <div class="floor__rooms rooms">
+      <div class="rooms__room room" *ngFor="let room of roomsTopPart">
+        <span class="room__number">{{room.number}}</span>
+        <button class="room__button" *ngIf="room.requestCount > 0" (click)="showRequests(room.id)">
+          Show all {{room.requestCount}} requests
+        </button>
+        <button class="room__button" (click)="openRequest(room.id)">
+          Open request
+        </button>
+      </div>
+    </div>
+    <div class="floor__hall"></div>
+    <div class="floor__rooms rooms">
+      <div class="rooms__room room" *ngFor="let room of roomsBottomPart">
+        <span class="room__number">{{room.number}}</span>
+        <button class="room__button" *ngIf="room.requestCount > 0" (click)="showRequests(room.id)">
+          Show all {{room.requestCount}} requests
+        </button>
+        <button class="room__button" (click)="openRequest(room.id)">
+          Open request
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="back-button" (click)="backToOffice()">Back to office</button>

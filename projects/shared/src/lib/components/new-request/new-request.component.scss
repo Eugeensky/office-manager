@@ -1,0 +1,64 @@
+@import "projects/shared/src/lib/styles-lib/colors.scss";
+
+:host {
+    margin: 200px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__textarea {
+        margin: 10px 0;
+        width: 460px;
+        border: 2px solid $MainColor;
+        border-radius: 5px;
+        padding: 0 0 0 5px;
+        font-size: 1.4rem;
+        color: $MainColor;
+        transition:.2s all ease;
+        min-height: 200px;
+        resize: vertical;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 3px 3px $SecondColor;
+        }
+    }
+
+    &__submit {
+        height: 40px;
+        width: auto;
+        border: 2px solid $SecondColor;
+        background-color: $MainColor;
+        color:#fff;
+        border-radius: 5px;
+        font-size: 1.4rem;
+        margin: auto 5px;
+        padding: 0 10px;
+        cursor: pointer;
+    }
+
+    p {
+        color: $MainColor;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    input:focus {
+        outline: none;
+        box-shadow: 0 0 3px 3px $SecondColor;
+    }
+
+}
+
+.error-message {
+    color: $SecondColor;
+    font-size: 2rem;
+    margin: 30px;
+}
+

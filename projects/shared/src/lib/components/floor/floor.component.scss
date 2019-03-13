@@ -1,0 +1,136 @@
+@import "../../styles-lib/colors.scss";
+
+.floor-number {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 5rem;
+}
+
+.back-button {
+  display: block;
+  min-height: 40px;
+  border: 2px solid $SecondColor;
+  background-color: $MainColor;
+  color:#fff;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin: 20px auto;
+}
+
+.floor-area {
+  position: relative;
+  max-width: 960px;
+  min-width: 450px;
+  margin: auto;
+  background-color: #CCC;
+
+  &__bg-img {
+    width: 100%;
+  }
+
+  &__floor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.floor {
+  display: flex;
+  flex-direction: column;
+
+  &__rooms {
+    height: 40%;
+  }
+
+  &__hall {
+    height: 20%;
+    box-sizing: border-box;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+  }
+}
+
+.rooms {
+  display: flex;
+  border: 2px solid black;
+
+  &__room {
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+  }
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  position: relative;
+
+  &__number {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 5rem;
+    z-index: 0;
+  }
+
+  &__button {
+    min-height: 30px;
+    border: 2px solid $SecondColor;
+    background-color: $MainColor;
+    color:#fff;
+    border-radius: 5px;
+    font-size: 1rem;
+    z-index: 1;
+    opacity: .6;
+    margin: 5px;
+    cursor: pointer;
+    transition: .2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .floor-area {
+    max-width: 960px;
+    min-width: 450px;
+    margin: auto;
+    background-color: #CCC;
+  
+    &__bg-img {
+      display: none;
+    }
+  
+    &__floor {
+      position: inherit;
+    }
+  }
+  .rooms {
+    width: 100%;
+    flex-direction: column;
+
+    &:first-child {
+      border-bottom: none;
+    }
+
+    &:last-child {
+      border-top: none;
+    }
+
+    &__room {
+      height: 100px;
+    }
+  }
+}

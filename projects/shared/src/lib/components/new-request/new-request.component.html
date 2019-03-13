@@ -1,0 +1,10 @@
+<form [formGroup]="requestForm" (submit)="sendRequest()" class="form">
+  <p>Open new request</p>
+  <input type="hidden" formControlName="roomId">
+  <textarea class="form__textarea" formControlName="text"></textarea>
+  <div class="form__buttons">
+    <button class="form__submit" (click)="backToFloor()">Back to floor</button>
+    <input class="form__submit" type="submit" value="Send">
+  </div>
+  
+</form>

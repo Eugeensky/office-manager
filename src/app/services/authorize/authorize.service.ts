@@ -1,34 +1,38 @@
 import { Injectable } from '@angular/core';
-import { FakeServer, User, AuthResponse } from 'projects/shared/src/public_api';
+import { User, AuthResponse } from 'projects/shared/src/public_api';
+import { environment } from 'projects/shared/src/enviroments/enviroments';
+import { HttpClient } from '@angular/common/http';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizeService {
 
-  constructor() { }
+  private _isRegistred: Subject<boolean> = new Subject<boolean>();
 
-  public logIn(user: User): boolean {
-    const userInfo: AuthResponse = FakeServer.getUserInfo(user);
-    if ( userInfo && userInfo.isRegistred && userInfo.validUntil > Date.now() ) {
-      this.redirectToApp(userInfo);
-      return true;
-    }
-    return false;
+  constructor(private http: HttpClient) {
+    this.isRegistred = this._isRegistred.asObservable();
+    this._isRegistred.next(false);
   }
 
-  private redirectToApp(userInfo: AuthResponse) {
-    switch (userInfo.role) {
-      case 'admin': {
-// tslint:disable-next-line: max-line-length
-        window.location.href = `http://localhost:4201/login?login=${userInfo.login}&token=${userInfo.token}&validUntil=${userInfo.validUntil}`;
-        break;
-      }
-      case 'user': {
-// tslint:disable-next-line: max-line-length
-        window.location.href = `http://localhost:4202/login?login=${userInfo.login}&token=${userInfo.token}&validUntil=${userInfo.validUntil}`;
-        break;
-      }
+  public isRegistred: Observable<boolean>;
+
+  public logIn(user: User) {
+    const userInfo = this.http.post(`${environment.urls.api}token`, user).subscribe({
+      next: (data: AuthResponse) => {
+        this._isRegistred.next(true);
+        this.redirectToApp(data);
+      },
+      error: (error) => this._isRegistred.next(false)
+    });
+  }
+
+  private redirectToApp(response: AuthResponse) {
+    if (response.isAdmin) {
+      window.location.href = `${environment.urls.adminPortal}/login?&token=${response.token}`;
+    } else {
+      window.location.href = `${environment.urls.userPortal}/login?&token=${response.token}`;
     }
   }
 }
