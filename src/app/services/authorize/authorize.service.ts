@@ -19,7 +19,7 @@ export class AuthorizeService {
   public isRegistred: Observable<boolean>;
 
   public logIn(user: User) {
-    const userInfo = this.http.post(`${environment.urls.api}token`, user).subscribe({
+    this.http.post(`${environment.urls.api}/account/token`, user).subscribe({
       next: (data: AuthResponse) => {
         this._isRegistred.next(true);
         this.redirectToApp(data);
@@ -29,10 +29,7 @@ export class AuthorizeService {
   }
 
   private redirectToApp(response: AuthResponse) {
-    if (response.isAdmin) {
-      window.location.href = `${environment.urls.adminPortal}/login?&token=${response.token}`;
-    } else {
-      window.location.href = `${environment.urls.userPortal}/login?&token=${response.token}`;
-    }
+    window.location.href =
+      `${response.isAdmin ? environment.urls.adminPortal : environment.urls.userPortal}/login?&token=${response.token}`;
   }
 }

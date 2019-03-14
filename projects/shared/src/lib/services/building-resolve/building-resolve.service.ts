@@ -16,6 +16,6 @@ export class BuildingResolveService implements Resolve<FloorInfo[]> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     FloorInfo[] | Observable<FloorInfo[]> | Promise<FloorInfo[]> {
 
-    return this.http.get<FloorInfo[]>(`${environment.urls.api}api/floors`);
+    return this.http.get<FloorInfo[]>(`floors`);
   }
 }

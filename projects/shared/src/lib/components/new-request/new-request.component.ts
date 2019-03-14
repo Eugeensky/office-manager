@@ -29,8 +29,7 @@ export class NewRequestComponent implements OnInit {
   }
 
   public sendRequest() {
-    console.log(this.requestForm.value);
-    this.http.post(`${environment.urls.api}api/requests`, this.requestForm.value).subscribe(isOpened => {
+    this.http.post(`requests`, this.requestForm.value).subscribe(isOpened => {
       if (isOpened) {
         this.router.navigateByUrl(`floors/${this.floorNumber}`);
       }

@@ -23,14 +23,10 @@ export class AuthComponent implements OnInit {
   }
 
   public logIn() {
-    this.authService.isRegistred.subscribe(isReg => {
-      if (!isReg) {
-        this.errorMessage = 'Invalid login or password';
-      } else {
-        this.errorMessage = '';
-      }
-    });
     if (this.authForm.valid) {
+      this.authService.isRegistred.subscribe(isReg => {
+        this.errorMessage = isReg ? '' : 'Invalid login or password';
+      });
       this.authService.logIn(this.authForm.value);
     } else {
       this.errorMessage = 'Invalid login or password';

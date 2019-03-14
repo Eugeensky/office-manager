@@ -14,8 +14,8 @@ export class FloorResolveService implements Resolve<RoomInfo[]> {
   constructor(private http: HttpClient) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
-  RoomInfo[] | Observable<RoomInfo[]> | Promise<RoomInfo[]> {
+    RoomInfo[] | Observable<RoomInfo[]> | Promise<RoomInfo[]> {
 
-    return this.http.get<RoomInfo[]>(`${environment.urls.api}api/floors/${route.params.floorNumber}`);
+    return this.http.get<RoomInfo[]>(`floors/${route.params.floorNumber}`);
   }
 }

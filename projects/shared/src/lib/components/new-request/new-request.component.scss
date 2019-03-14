@@ -15,26 +15,26 @@
     &__textarea {
         margin: 10px 0;
         width: 460px;
-        border: 2px solid $MainColor;
+        border: 2px solid $main-color;
         border-radius: 5px;
         padding: 0 0 0 5px;
         font-size: 1.4rem;
-        color: $MainColor;
+        color: $main-color;
         transition:.2s all ease;
         min-height: 200px;
         resize: vertical;
 
         &:focus {
             outline: none;
-            box-shadow: 0 0 3px 3px $SecondColor;
+            box-shadow: 0 0 3px 3px $secondary-color;
         }
     }
 
     &__submit {
         height: 40px;
         width: auto;
-        border: 2px solid $SecondColor;
-        background-color: $MainColor;
+        border: 2px solid $secondary-color;
+        background-color: $main-color;
         color:#fff;
         border-radius: 5px;
         font-size: 1.4rem;
@@ -44,20 +44,20 @@
     }
 
     p {
-        color: $MainColor;
+        color: $main-color;
         font-size: 2rem;
         font-weight: 600;
     }
 
     input:focus {
         outline: none;
-        box-shadow: 0 0 3px 3px $SecondColor;
+        box-shadow: 0 0 3px 3px $secondary-color;
     }
 
 }
 
 .error-message {
-    color: $SecondColor;
+    color: $secondary-color;
     font-size: 2rem;
     margin: 30px;
 }

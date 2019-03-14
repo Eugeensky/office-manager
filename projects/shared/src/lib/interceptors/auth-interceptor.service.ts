@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } fro
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators';
 import { SessionService } from '../../public_api';
+import { environment } from '../../enviroments/enviroments';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('session');
     req = req.clone({
+      url: `${environment.urls.api}/${req.url}`,
       setHeaders: {
         Authorization : `Bearer ${token}`
       }

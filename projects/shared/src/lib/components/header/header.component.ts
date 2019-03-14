@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.sessionService.closeSession();
   }
 
-  redirrectToHome() {
+  redirectToHome() {
     this.router.navigateByUrl('');
   }
 }
