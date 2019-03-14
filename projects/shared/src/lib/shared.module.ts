@@ -7,6 +7,9 @@ import { LoginComponent } from './components/login/login.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SessionService } from './services/session/session.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { FloorComponent } from './components/floor/floor.component';
+import { NewRequestComponent } from './components/new-request/new-request.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,20 +19,26 @@ import { BrowserModule } from '@angular/platform-browser';
     FooterComponent,
     HeaderComponent,
     LoginComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    FloorComponent,
+    NewRequestComponent
   ],
   providers: [
     SessionService
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     FooterComponent,
     HeaderComponent,
     LoginComponent,
     SpinnerComponent,
-    BuildingComponent
+    BuildingComponent,
+    FloorComponent,
+    NewRequestComponent
   ]
 })
 export class SharedModule { }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthorizeService } from 'src/app/services/authorize/authorize.service';
-import { User } from 'projects/shared/src/public_api';
 
 
 @Component({
@@ -24,9 +23,13 @@ export class AuthComponent implements OnInit {
   }
 
   public logIn() {
-    const user: User = this.authForm.value;
-    if (!this.authService.logIn(user)) {
-      this.errorMessage = 'INVALID LOGIN OR PASS';
+    if (this.authForm.valid) {
+      this.authService.isRegistred.subscribe(isReg => {
+        this.errorMessage = isReg ? '' : 'Invalid login or password';
+      });
+      this.authService.logIn(this.authForm.value);
+    } else {
+      this.errorMessage = 'Invalid login or password';
     }
   }
 }

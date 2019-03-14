@@ -12,26 +12,35 @@
     flex-direction: column;
     align-items: center;
 
-    &__input {
+    &__textarea {
         margin: 10px 0;
         width: 460px;
         border: 2px solid $main-color;
         border-radius: 5px;
         padding: 0 0 0 5px;
-        height: 30px;
         font-size: 1.4rem;
         color: $main-color;
         transition:.2s all ease;
+        min-height: 200px;
+        resize: vertical;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 3px 3px $secondary-color;
+        }
     }
 
     &__submit {
         height: 40px;
-        width: 100px;
+        width: auto;
         border: 2px solid $secondary-color;
         background-color: $main-color;
         color:#fff;
         border-radius: 5px;
         font-size: 1.4rem;
+        margin: auto 5px;
+        padding: 0 10px;
+        cursor: pointer;
     }
 
     p {
