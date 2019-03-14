@@ -1,0 +1,168 @@
+@import "../../styles-lib/colors.scss";
+
+$border: 4px solid black;
+$small-border: 2px solid black;
+$bg-color: #CCC;
+
+@mixin button() {
+  border: 2px solid $secondary-color;
+  background-color: $main-color;
+  color:#fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.floor-number {
+  display: block;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 5rem;
+}
+
+.back-button {
+  @include button();
+  display: block;
+  min-height: 40px;
+  font-size: 1.4rem;
+  margin: 20px auto;
+}
+
+.floor-area {
+  position: relative;
+  max-width: 960px;
+  min-width: 450px;
+  margin: auto;
+  background-color: $bg-color;
+
+  &__bg-img {
+    width: 100%;
+  }
+
+  &__floor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.floor {
+  display: flex;
+  flex-direction: column;
+
+  &__rooms {
+    height: 40%;
+  }
+
+  &__hall {
+    height: 20%;
+    box-sizing: border-box;
+    border-left: $border;
+    border-right: $border;
+  }
+}
+
+.rooms {
+  display: flex;
+  border: $small-border;
+
+  &__room {
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+    flex-grow: 1;
+    border: $small-border;
+  }
+
+  &_top-part &__room::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 1px;
+    left: 50%;
+    transform: translateY(100%) translateX(-50%);
+    border-top: 25px solid $bg-color; 
+    border-right: 75px solid transparent;
+    filter: drop-shadow(4px 4px 0 black);
+  }
+
+  &_bottom-part &__room::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 1px;
+    left: 50%;
+    transform: translateY(-100%) translateX(-50%);
+    border-bottom: 25px solid $bg-color; 
+    border-left: 75px solid transparent;
+    filter: drop-shadow(-3px -3px 0 black);
+  }
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  position: relative;
+
+  &__number {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    font-size: 5rem;
+    z-index: 0;
+  }
+
+  &__button {
+    @include button();
+    min-height: 30px;
+    font-size: 1rem;
+    z-index: 1;
+    opacity: .6;
+    margin: 5px;
+    transition: .2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .floor-area {
+    margin: auto;
+    background-color: $bg-color;
+  
+    &__bg-img {
+      display: none;
+    }
+  
+    &__floor {
+      position: inherit;
+    }
+  }
+
+  .rooms {
+    flex-grow: 1;
+    flex-direction: column;
+
+    &:first-child {
+      border-bottom: none;
+    }
+
+    &:last-child {
+      border-top: none;
+    }
+
+    &__room {
+      height: 100px;
+    }
+
+    &_top-part &__room::after, &_bottom-part &__room::after {
+      display: none;
+    }
+  }
+}

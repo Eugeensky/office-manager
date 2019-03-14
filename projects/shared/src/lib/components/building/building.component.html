@@ -17,11 +17,11 @@
       <img class="roof__bg-img bg-img" src="assets/gray-bg-1x6.svg" >
     </div>
   </div>
-  <div class="building__floor floor" *ngFor="let floorInfo of floorsInfo" >
+  <div class="building__floor floor" *ngFor="let floorInfo of floorsInfo" (click)="goToFloor(floorInfo.number)">
     <div class="floor__windows">
         <div class="floor__window window">
           <span class="window__content window__content--caption">Floor#</span>
-          <span class="window__content">{{floorInfo.floor}}</span>
+          <span class="window__content">{{floorInfo.number}}</span>
         </div>
         <div class="floor__window window"></div>
         <div class="floor__window window"></div>

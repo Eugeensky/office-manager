@@ -1,4 +1,4 @@
 export class FloorInfo {
-  floor: number;
+  number: number;
   requestCount: number;
 }

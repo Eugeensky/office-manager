@@ -1,7 +1,5 @@
 export class AuthResponse {
   isRegistred: boolean;
-  login: string;
-  role: string;
+  isAdmin: boolean;
   token: string;
-  validUntil: number;
 }

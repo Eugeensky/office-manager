@@ -21,4 +21,8 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.sessionService.closeSession();
   }
+
+  redirectToHome() {
+    this.router.navigateByUrl('');
+  }
 }

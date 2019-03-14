@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   constructor(private route: ActivatedRoute, private sessionService: SessionService, private router: Router) { }
 
   ngOnInit() {
-    this.sessionService.setSession(this.route.snapshot.queryParams);
+    this.sessionService.setSession(this.route.snapshot.queryParams.token);
     this.router.navigateByUrl('');
   }
 

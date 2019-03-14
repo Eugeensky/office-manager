@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FloorsResolveService } from './floors-resolve.service';
+import { FloorResolveService } from './floor-resolve.service';
 
-describe('FloorsResolveService', () => {
+describe('FloorResolveService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: FloorsResolveService = TestBed.get(FloorsResolveService);
+    const service: FloorResolveService = TestBed.get(FloorResolveService);
     expect(service).toBeTruthy();
   });
 });
