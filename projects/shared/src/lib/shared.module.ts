@@ -10,6 +10,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FloorComponent } from './components/floor/floor.component';
 import { NewRequestComponent } from './components/new-request/new-request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RoomComponent } from './components/room/room.component';
+import { RequestStatusPipe } from './pipes/request-status.pipe';
 
 
 
@@ -21,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SpinnerComponent,
     FloorComponent,
-    NewRequestComponent
+    NewRequestComponent,
+    RoomComponent,
+    RequestStatusPipe
   ],
   providers: [
     SessionService
@@ -38,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SpinnerComponent,
     BuildingComponent,
     FloorComponent,
-    NewRequestComponent
+    NewRequestComponent,
+    RequestStatusPipe
   ]
 })
 export class SharedModule { }

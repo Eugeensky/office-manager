@@ -1,4 +1,4 @@
-@import "projects/shared/src/lib/styles-lib/colors.scss";
+@import "projects/shared/src/lib/styles-lib/lib.scss";
 
 :host {
     margin: 200px auto;
@@ -13,6 +13,7 @@
     align-items: center;
 
     &__input {
+        
         margin: 10px 0;
         width: 460px;
         border: 2px solid $main-color;
@@ -25,12 +26,9 @@
     }
 
     &__submit {
+        @include button();
         height: 40px;
         width: 100px;
-        border: 2px solid $secondary-color;
-        background-color: $main-color;
-        color:#fff;
-        border-radius: 5px;
         font-size: 1.4rem;
     }
 

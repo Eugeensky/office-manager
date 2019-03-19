@@ -1,0 +1,10 @@
+$main-color:#264439;
+$secondary-color:#cf6161;
+
+@mixin button() {
+  border: 2px solid $secondary-color;
+  background-color: $main-color;
+  color:#fff;
+  border-radius: 5px;
+  cursor: pointer;
+}

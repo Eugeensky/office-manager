@@ -1,22 +1,14 @@
-@import "../../styles-lib/colors.scss";
+@import "../../styles-lib/lib.scss";
 
 $border: 4px solid black;
 $small-border: 2px solid black;
 $bg-color: #CCC;
 
-@mixin button() {
-  border: 2px solid $secondary-color;
-  background-color: $main-color;
-  color:#fff;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
 .floor-number {
   display: block;
   margin-bottom: 10px;
   text-align: center;
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 .back-button {
@@ -96,7 +88,7 @@ $bg-color: #CCC;
     transform: translateY(-100%) translateX(-50%);
     border-bottom: 25px solid $bg-color; 
     border-left: 75px solid transparent;
-    filter: drop-shadow(-3px -3px 0 black);
+    filter: drop-shadow(-4px -4px 0 black);
   }
 }
 

@@ -7,10 +7,10 @@
     <div class="floor__rooms rooms rooms_top-part">
       <div class="rooms__room room" *ngFor="let room of roomsTopPart">
         <span class="room__number">{{room.number}}</span>
-        <button class="room__button" *ngIf="room.requestCount > 0" (click)="showRequests(room.id)">
+        <button class="room__button" *ngIf="room.requestCount > 0" (click)="showRequests(room)">
           Show all {{room.requestCount}} requests
         </button>
-        <button class="room__button" (click)="openRequest(room.id)">
+        <button class="room__button" (click)="openRequest(room)">
           Open request
         </button>
       </div>
@@ -19,10 +19,10 @@
     <div class="floor__rooms rooms rooms_bottom-part">
       <div class="rooms__room room" *ngFor="let room of roomsBottomPart">
         <span class="room__number">{{room.number}}</span>
-        <button class="room__button" *ngIf="room.requestCount > 0" (click)="showRequests(room.id)">
+        <button class="room__button" *ngIf="room.requestCount > 0" (click)="showRequests(room)">
           Show all {{room.requestCount}} requests
         </button>
-        <button class="room__button" (click)="openRequest(room.id)">
+        <button class="room__button" (click)="openRequest(room)">
           Open request
         </button>
       </div>

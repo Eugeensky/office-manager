@@ -1,0 +1,98 @@
+@import "projects/shared/src/lib/styles-lib/lib.scss";
+
+.buttons {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  @include button();
+  height: 40px;
+  display: block;
+  margin: 0 10px;
+  font-size: 1.4rem;
+}
+
+.request {
+  max-width: 960px;
+  margin: auto;
+  display: flex;
+  padding: 10px;
+
+  &__info {
+    width: 200px;
+  }
+
+  &__static-text {
+    margin: 5px 0;
+  }
+
+  &__info-text {
+    font-weight: 600;
+  }
+
+  &__button {
+    @include button();
+    height: 30px;
+    padding: 0 5px;
+  }
+
+  &__comments {
+    flex-grow: 1;
+  }
+}
+
+.comments {
+  &__comment, &__comment-form {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid black;
+  }
+}
+
+.comment-form {
+  &__text {
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid $main-color;
+    border-radius: 5px;
+    padding: 0 0 0 5px;
+    font-size: 1.4rem;
+    color: $main-color;
+    transition:.2s all ease;
+    min-height: 100px;
+    resize: vertical;
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 3px 3px $secondary-color;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+  }
+
+  &__title {
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+}
+
+.comment {
+ 
+  &__title-text {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  &__title-info {
+    font-weight: 600;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+  }
+}
