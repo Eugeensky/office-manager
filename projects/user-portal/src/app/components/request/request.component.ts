@@ -17,6 +17,11 @@ export class RequestComponent implements OnInit {
   private roomId: number;
   private requestId: number;
 
+  public requestInfo: Request;
+  public newComment = new FormControl();
+  public floorNumber: number;
+  public roomNumber: string;
+
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.route.data.subscribe(data => {
       this.requestInfo = data.requestInfo;
@@ -29,13 +34,7 @@ export class RequestComponent implements OnInit {
     this.requestId = this.route.snapshot.queryParams.requestId;
   }
 
-  public requestInfo: Request;
-  public newComment: FormControl;
-  public floorNumber: number;
-  public roomNumber: string;
-
   ngOnInit() {
-    this.newComment = new FormControl();
   }
 
   public backToRoom() {
@@ -46,36 +45,26 @@ export class RequestComponent implements OnInit {
     this.router.navigateByUrl(`floors/${this.floorNumber}`);
   }
 
-  public sendReOpenComment() {
-    const newComment: NewCommentModel = new NewCommentModel();
-    newComment.commentText = `reopen: ${this.newComment.value}`;
-    newComment.requestId = this.requestId;
-    newComment.status = RequestStatus.Opened as number;
-    this.sendRequestAndUpdateInfo(newComment);
-  }
-
-  public sendCommentWithoutStatus() {
-    const newComment: NewCommentModel = new NewCommentModel();
-    newComment.commentText = this.newComment.value;
-    newComment.requestId = this.requestId;
-    newComment.status = this.requestInfo.status;
-    this.sendRequestAndUpdateInfo(newComment);
+  public changeStatusWithComment(status: RequestStatus) {
+    const commentText = `${this.requestInfo.status !== status ? RequestStatus[status] : 'Not changed'}: ${this.newComment.value}`;
+    const newComment = new NewCommentModel(
+      commentText,
+      status,
+      this.requestId
+    );
+    this.http.post<Comment>('requests/postComment', newComment).subscribe(comment => {
+      if (comment) {
+        this.requestInfo.comments.unshift(comment);
+        this.requestInfo.status = newComment.status;
+        this.newComment.setValue('');
+      }
+    });
   }
 
   public closeRequest() {
     this.http.get<boolean>(`requests/close/${this.requestId}`).subscribe(isClosed => {
       if (isClosed) {
         this.router.navigateByUrl('');
-      }
-    });
-  }
-
-  private sendRequestAndUpdateInfo(newComment: NewCommentModel) {
-    this.http.post<Comment>('requests/postComment', newComment).subscribe(comment => {
-      if (comment) {
-        this.requestInfo.comments.unshift(comment);
-        this.requestInfo.status = newComment.status;
-        this.newComment.setValue('');
       }
     });
   }
