@@ -12,6 +12,7 @@ import { NewRequestComponent } from './components/new-request/new-request.compon
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomComponent } from './components/room/room.component';
 import { RequestStatusPipe } from './pipes/request-status.pipe';
+import { IdentificationService } from './services/identification/identification.service';
 
 
 
@@ -28,7 +29,8 @@ import { RequestStatusPipe } from './pipes/request-status.pipe';
     RequestStatusPipe
   ],
   providers: [
-    SessionService
+    SessionService,
+    IdentificationService
   ],
   imports: [
     BrowserModule,
