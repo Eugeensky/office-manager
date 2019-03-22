@@ -3,6 +3,7 @@ export class RequestInfo {
   status: number;
   openDate: Date;
   roomId: number;
+  roomNumber: string;
   requestOwner: string;
   text: string;
   postDate: Date;

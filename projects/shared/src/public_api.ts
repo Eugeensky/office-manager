@@ -7,6 +7,7 @@ import { from } from 'rxjs';
 export * from './lib/shared.module';
 export * from './lib/models/auth-response';
 export * from './lib/models/user';
+export * from './lib/models/request-info';
 export * from './lib/components/footer/footer.component';
 export * from './lib/components/header/header.component';
 export * from './lib/components/login/login.component';

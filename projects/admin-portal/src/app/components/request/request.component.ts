@@ -45,11 +45,16 @@ export class RequestComponent implements OnInit {
     this.router.navigateByUrl(`floors/${this.floorNumber}`);
   }
 
+  public backToAllRequests() {
+    this.router.navigateByUrl('allRequests');
+  }
+
   public changeStatusWithComment(status: RequestStatus) {
+    const commentText = `${this.requestInfo.status !== status ? RequestStatus[status] : 'Not changed'}: ${this.newComment.value}`;
     const newComment = new NewCommentModel(
-      `${this.requestInfo.status !== status ? RequestStatus[status] : 'Not changed'}: ${this.newComment.value}`,
-      this.requestId,
-      status
+      commentText,
+      status,
+      this.requestId
     );
 
     this.http.post<Comment>('requests/postComment', newComment).subscribe(comment => {

@@ -7,6 +7,8 @@ import { FloorResolveService } from 'projects/shared/src/lib/services/floor-reso
 import { RoomResolveService } from 'projects/shared/src/lib/services/room-resolve/room-resolve.service';
 import { RequestResolveService } from 'projects/shared/src/lib/services/request-resolve/request-resolve.service';
 import { RequestComponent } from './components/request/request.component';
+import { AllRequestsComponent } from './components/all-requests/all-requests.component';
+import { AllRequestsResolve } from 'projects/shared/src/lib/services/all-requests-resolve/all-requests-resolve.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -40,6 +42,13 @@ const routes: Routes = [
     component: RequestComponent,
     resolve: {
       requestInfo: RequestResolveService
+    }
+  },
+  {
+    path: 'allRequests',
+    component: AllRequestsComponent,
+    resolve: {
+      requestsInfo: AllRequestsResolve
     }
   },
 ];

@@ -1,6 +1,7 @@
 <div class="buttons">
-  <button class="button" (click)="backToRoom()">Back to room #{{roomNumber}}</button>
-  <button class="button" (click)="backToFloor()">Back to floor #{{floorNumber}}</button>
+  <button *ngIf="roomNumber" class="button" (click)="backToRoom()">Back to room #{{roomNumber}}</button>
+  <button *ngIf="floorNumber" class="button" (click)="backToFloor()">Back to floor #{{floorNumber}}</button>
+  <button *ngIf="!roomNumber" class="button" (click)="backToAllRequests()">Back to all requests</button>
 </div>  
 <div class="request" >
   <div class="request__info">

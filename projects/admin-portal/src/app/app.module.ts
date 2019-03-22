@@ -9,12 +9,14 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthInterceptor } from 'projects/shared/src/lib/interceptors/auth-interceptor.service';
 import { RequestComponent } from './components/request/request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AllRequestsComponent } from './components/all-requests/all-requests.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    RequestComponent
+    RequestComponent,
+    AllRequestsComponent
   ],
   imports: [
     BrowserModule,
