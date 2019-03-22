@@ -11,9 +11,6 @@ import { FloorComponent } from './components/floor/floor.component';
 import { NewRequestComponent } from './components/new-request/new-request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomComponent } from './components/room/room.component';
-import { RequestStatusPipe } from './pipes/request-status.pipe';
-
-
 
 @NgModule({
   declarations: [
@@ -24,8 +21,7 @@ import { RequestStatusPipe } from './pipes/request-status.pipe';
     SpinnerComponent,
     FloorComponent,
     NewRequestComponent,
-    RoomComponent,
-    RequestStatusPipe
+    RoomComponent
   ],
   providers: [
     SessionService
@@ -42,8 +38,7 @@ import { RequestStatusPipe } from './pipes/request-status.pipe';
     SpinnerComponent,
     BuildingComponent,
     FloorComponent,
-    NewRequestComponent,
-    RequestStatusPipe
+    NewRequestComponent
   ]
 })
 export class SharedModule { }

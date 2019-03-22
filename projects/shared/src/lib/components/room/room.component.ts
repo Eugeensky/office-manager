@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestInfo } from '../../models/request-info';
+import { RequestStatus } from '../../models/request-status';
 
 @Component({
   selector: 'shared-room',
@@ -9,6 +10,12 @@ import { RequestInfo } from '../../models/request-info';
 })
 export class RoomComponent implements OnInit {
 
+  public floorNumber: number;
+  public roomNumber: number;
+  public roomId: number;
+  public requestsInfo: RequestInfo[];
+  public RequestStatus = RequestStatus;
+
   constructor(private route: ActivatedRoute, private router: Router) {
     this.floorNumber = this.route.snapshot.queryParams.floorNumber;
     this.roomNumber = this.route.snapshot.queryParams.roomNumber;
@@ -16,10 +23,6 @@ export class RoomComponent implements OnInit {
     this.route.data.subscribe(data => this.requestsInfo = data.requestsInfo);
   }
 
-  public floorNumber: number;
-  public roomNumber: number;
-  public roomId: number;
-  public requestsInfo: RequestInfo[];
 
   ngOnInit() {
   }
