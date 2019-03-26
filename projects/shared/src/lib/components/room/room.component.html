@@ -1,0 +1,25 @@
+<p class="room-number">
+  Room #{{roomNumber}}
+</p>
+<div class="back-buttons">
+  <button class="back-buttons__button" (click)="backToFloor()">Back to floor</button>
+  <button class="back-buttons__button" (click)="openRequest()">Open new request</button>
+</div>
+<div class="request" *ngFor="let requestInfo of requestsInfo">
+  <div class="request__info">
+    <p class="request__static-text">Request <b class="request__info-text">#{{requestInfo.requestId}}</b></p>
+    <p class="request__static-text">Status - <b class="request__info-text">{{RequestStatus[requestInfo.status]}}</b></p>
+    <p class="request__static-text">RequestOwner - <b class="request__info-text">{{requestInfo.requestOwner}}</b></p>
+    <p class="request__static-text">Open at <b class="request__info-text">{{requestInfo.openDate | date:'short'}}</b></p>
+    <button class="request__button" (click)="showMore(requestInfo.requestId)">Show more</button>
+  </div>
+  <div class="request__last-comment" *ngIf="requestInfo.commentOwner">
+    <p class="request__last-comment-title">
+      Last comment from 
+      <span class="request__info-text">{{requestInfo.commentOwner}}</span> 
+      at 
+      <span class="request__info-text">{{requestInfo.postDate | date:'short'}}</span>
+    </p>
+    <p class="request__last-comment-text">{{requestInfo.text}}</p>
+  </div>
+</div>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'projects/shared/src/enviroments/enviroments';
 
 @Component({
   selector: 'shared-new-request',
@@ -13,27 +12,28 @@ export class NewRequestComponent implements OnInit {
 
   private floorNumber: number;
   private roomId: number;
-  public requestForm: FormGroup;
+  public requestControl: FormControl;
+  public roomNumber: number;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.route.queryParams.subscribe(params => {
       this.floorNumber = params.floorNumber;
       this.roomId = params.roomId;
+      this.roomNumber = params.roomNumber;
     });
   }
   ngOnInit() {
-    this.requestForm = new FormGroup({
-      roomId: new FormControl(this.roomId, Validators.required),
-      text: new FormControl('', Validators.required)
-    });
+    this.requestControl = new FormControl('', Validators.required);
   }
 
   public sendRequest() {
-    this.http.post(`requests`, this.requestForm.value).subscribe(isOpened => {
-      if (isOpened) {
-        this.router.navigateByUrl(`floors/${this.floorNumber}`);
-      }
-    });
+    if (this.requestControl.valid) {
+      this.http.post(`requests`, { roomId: this.roomId, text: `open: ${this.requestControl.value}` }).subscribe(isOpened => {
+        if (isOpened) {
+          this.router.navigateByUrl(`floors/${this.floorNumber}`);
+        }
+      });
+    }
   }
 
   public backToFloor() {

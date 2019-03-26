@@ -1,4 +1,4 @@
-@import "projects/shared/src/lib/styles-lib/colors.scss";
+@import "projects/shared/src/lib/styles-lib/lib.scss";
 
 :host {
     margin: 200px auto;
@@ -31,16 +31,12 @@
     }
 
     &__submit {
+        @include button();
         height: 40px;
         width: auto;
-        border: 2px solid $secondary-color;
-        background-color: $main-color;
-        color:#fff;
-        border-radius: 5px;
         font-size: 1.4rem;
         margin: auto 5px;
         padding: 0 10px;
-        cursor: pointer;
     }
 
     p {

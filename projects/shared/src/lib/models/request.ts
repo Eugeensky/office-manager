@@ -6,4 +6,5 @@ export class Request {
   status: RequestStatus;
   openDate: Date;
   comments: Comment[];
+  requestOwner: string;
 }

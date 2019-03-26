@@ -10,8 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FloorComponent } from './components/floor/floor.component';
 import { NewRequestComponent } from './components/new-request/new-request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { RoomComponent } from './components/room/room.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SpinnerComponent,
     FloorComponent,
-    NewRequestComponent
+    NewRequestComponent,
+    RoomComponent
   ],
   providers: [
     SessionService
