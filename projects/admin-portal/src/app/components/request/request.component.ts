@@ -22,7 +22,7 @@ export class RequestComponent implements OnInit {
   public floorNumber: number;
   public roomNumber: string;
   public RequestStatus = RequestStatus;
-  
+
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.route.data.subscribe(data => {
       this.requestInfo = data.requestInfo;

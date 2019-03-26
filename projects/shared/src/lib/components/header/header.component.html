@@ -5,7 +5,7 @@
       {{userLogin}}
       <span class="dropdown-symbol"></span>
     </div>
-    <div [class]="menuClassName">
+    <div class="user-info__menu" [ngClass]="{'user-info__menu_visible': isMenuOpened}">
         <div class="user-info__menu-item" (click)="toAllUserRequests()">Show all requests</div>
         <div class="user-info__menu-item" (click)="logOut()">Log Out</div>
     </div>

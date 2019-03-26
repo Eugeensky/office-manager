@@ -40,8 +40,7 @@ import { IdentificationService } from './services/identification/identification.
     SpinnerComponent,
     BuildingComponent,
     FloorComponent,
-    NewRequestComponent,
-    RequestStatusPipe
+    NewRequestComponent
   ]
 })
 export class SharedModule { }
