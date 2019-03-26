@@ -11,10 +11,7 @@ import { FloorComponent } from './components/floor/floor.component';
 import { NewRequestComponent } from './components/new-request/new-request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomComponent } from './components/room/room.component';
-import { RequestStatusPipe } from './pipes/request-status.pipe';
 import { IdentificationService } from './services/identification/identification.service';
-
-
 
 @NgModule({
   declarations: [
@@ -25,8 +22,7 @@ import { IdentificationService } from './services/identification/identification.
     SpinnerComponent,
     FloorComponent,
     NewRequestComponent,
-    RoomComponent,
-    RequestStatusPipe
+    RoomComponent
   ],
   providers: [
     SessionService,
