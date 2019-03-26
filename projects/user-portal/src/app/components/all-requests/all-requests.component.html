@@ -1,16 +1,35 @@
 
 <div class="request" *ngFor="let requestInfo of requestsInfo;trackBy:trackByRequestId">
     <div class="request__info">
-      <p class="request__static-text">Request <b class="request__info-text">#{{requestInfo.requestId}}</b></p>
-      <p class="request__static-text">Room <b class="request__info-text">#{{requestInfo.roomNumber}}</b></p>
-      <p class="request__static-text">Status - <b class="request__info-text">{{RequestStatus[requestInfo.status]}}</b></p>
-      <p class="request__static-text">RequestOwner - <b class="request__info-text">{{requestInfo.requestOwner}}</b></p>
-      <p class="request__static-text">Open at <b class="request__info-text">{{requestInfo.openDate | date:'short'}}</b></p>
+      <p class="request__static-text">
+        Request 
+        <span class="request__info-text">#{{requestInfo.requestId}}</span>
+      </p>
+      <p class="request__static-text">
+        Room 
+        <span class="request__info-text">#{{requestInfo.roomNumber}}</span>
+      </p>
+      <p class="request__static-text">
+        Status - 
+        <span class="request__info-text">{{RequestStatus[requestInfo.status]}}</span>
+      </p>
+      <p class="request__static-text">
+        RequestOwner - 
+        <span class="request__info-text">{{requestInfo.requestOwner}}</span>
+      </p>
+      <p class="request__static-text">
+        Open at 
+        <span class="request__info-text">{{requestInfo.openDate | date:'short'}}</span>
+      </p>
       <button class="request__button" (click)="showMore(requestInfo.requestId)">Show more</button>
       <button class="request__button" (click)="closeRequest(requestInfo.requestId)">Close Request</button>
     </div>
     <div class="request__last-comment" *ngIf="requestInfo.commentOwner">
-      <p class="request__last-comment-title">Last comment from <b class="request__info-text">{{requestInfo.commentOwner}}</b> at <b class="request__info-text">{{requestInfo.postDate | date:'short'}}</b></p>
+      <p class="request__last-comment-title">
+        Last comment from 
+        <span class="request__info-text">{{requestInfo.commentOwner}}</span>
+        at <span class="request__info-text">{{requestInfo.postDate | date:'short'}}</span>
+      </p>
       <p class="request__last-comment-text">{{requestInfo.text}}</p>
     </div>
   </div>
