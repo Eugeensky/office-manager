@@ -23,7 +23,6 @@ export class RoomComponent implements OnInit {
     this.route.data.subscribe(data => this.requestsInfo = data.requestsInfo);
   }
 
-
   ngOnInit() {
   }
 

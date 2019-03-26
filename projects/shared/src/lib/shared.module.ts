@@ -11,6 +11,7 @@ import { FloorComponent } from './components/floor/floor.component';
 import { NewRequestComponent } from './components/new-request/new-request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomComponent } from './components/room/room.component';
+import { IdentificationService } from './services/identification/identification.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RoomComponent } from './components/room/room.component';
     RoomComponent
   ],
   providers: [
-    SessionService
+    SessionService,
+    IdentificationService
   ],
   imports: [
     BrowserModule,

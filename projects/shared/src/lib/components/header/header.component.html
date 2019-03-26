@@ -1,6 +1,13 @@
 <header class="header">
-  <div class="header__logo" (click)="redirectToHome()">{{title | uppercase}}</div>
-  <div class="header__menu">
-    <div class="header__menu-item" (click)="logOut()">Log Out</div>
+  <div class="header__item" (click)="toHome()">{{title | uppercase}}</div>
+  <div class="header__item user-info" (click)="toggleMenu()">
+    <div class="user-info__user-name">
+      {{userLogin}}
+      <span class="dropdown-symbol"></span>
+    </div>
+    <div class="user-info__menu" [ngClass]="{'user-info__menu_visible': isMenuOpened}">
+        <div class="user-info__menu-item" (click)="toAllUserRequests()">Show all requests</div>
+        <div class="user-info__menu-item" (click)="logOut()">Log Out</div>
+    </div>
   </div>
 </header>

@@ -30,6 +30,6 @@ export class AuthorizeService {
 
   private redirectToApp(response: AuthResponse) {
     window.location.href =
-      `${response.isAdmin ? environment.urls.adminPortal : environment.urls.userPortal}/login?&token=${response.token}`;
+      `${response.isAdmin ? environment.urls.adminPortal : environment.urls.userPortal}/login?login=${response.login}&token=${response.token}`;
   }
 }
