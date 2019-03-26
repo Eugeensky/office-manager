@@ -11,7 +11,7 @@
     </p>
     <p class="request__static-text">
       Status - 
-      <span class="request__info-text">{{requestInfo.status | requestStatus}}</span>
+      <span class="request__info-text">{{RequestStatus[requestInfo.status]}}</span>
     </p>
     <p class="request__static-text">
       Request Owner - 
@@ -25,22 +25,27 @@
     <div class="comments__comment-form comment-form">
       <textarea [formControl]="newComment" class="comment-form__text"></textarea>
       <p class="comment-form__title">Post comment as:</p>
-      <div class="comment-form__buttons" *ngIf="requestInfo.status === 0">
-        <button class="button" (click)="changeStatusWithComment(1)">Accept</button>
-        <button class="button" (click)="changeStatusWithComment(2)">Reject</button>
+      <div class="comment-form__buttons" *ngIf="requestInfo.status === RequestStatus.Opened">
+        <button class="button" (click)="changeStatusWithComment(RequestStatus.Accepted)">Accept</button>
+        <button class="button" (click)="changeStatusWithComment(RequestStatus.Rejected)">Reject</button>
         <button class="button" (click)="changeStatusWithComment(requestInfo.status)">Without status</button>      
       </div>
-      <div class="comment-form__buttons" *ngIf="requestInfo.status === 1">
-          <button class="button" (click)="changeStatusWithComment(3)">Done</button>
-          <button class="button" (click)="changeStatusWithComment(2)">Reject</button>
+      <div class="comment-form__buttons" *ngIf="requestInfo.status === RequestStatus.Accepted">
+          <button class="button" (click)="changeStatusWithComment(RequestStatus.Done)">Done</button>
+          <button class="button" (click)="changeStatusWithComment(RequestStatus.Rejected)">Reject</button>
           <button class="button" (click)="changeStatusWithComment(requestInfo.status)">Without status</button>      
       </div>
-      <div class="comment-form__buttons" *ngIf="requestInfo.status !== 0 && requestInfo.status !== 1">
+      <div class="comment-form__buttons" *ngIf="requestInfo.status !== RequestStatus.Opened && requestInfo.status !== RequestStatus.Accepted">
           <button class="button" (click)="changeStatusWithComment(requestInfo.status)">Without status</button>      
       </div>
     </div>
     <div class="comments__comment comment" *ngFor="let comment of requestInfo.comments">
-      <p class="comment__title-text">Posted by <b class="comment__title-info">{{comment.commentOwner}}</b> at <b class="comment__title-info">{{comment.postDate | date:'short'}}</b></p>
+      <p class="comment__title-text">
+        Posted by 
+        <span class="comment__title-info">{{comment.commentOwner}}</span> 
+        at 
+        <span class="comment__title-info">{{comment.postDate | date:'short'}}</span>
+      </p>
       <p class="comment__text">{{comment.text}}</p>
     </div>
   </div>

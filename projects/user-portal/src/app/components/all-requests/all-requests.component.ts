@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestInfo } from 'projects/shared/src/public_api';
 import { HttpClient } from '@angular/common/http';
+import { RequestStatus } from 'projects/shared/src/lib/models/request-status';
 
 @Component({
   selector: 'app-all-requests',
@@ -11,11 +12,18 @@ import { HttpClient } from '@angular/common/http';
 export class AllRequestsComponent implements OnInit {
 
   public requestsInfo: RequestInfo[];
+  public RequestStatus = RequestStatus;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.route.data.subscribe(data => {
       this.requestsInfo = data.requestsInfo;
-      this.requestsInfo.reverse();
+      this.requestsInfo.sort((x, y) => {
+        if (x.postDate < y.postDate) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
     });
   }
 

@@ -21,6 +21,7 @@ export class RequestComponent implements OnInit {
   public newComment = new FormControl();
   public floorNumber: number;
   public roomNumber: string;
+  public RequestStatus = RequestStatus;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.route.data.subscribe(data => {

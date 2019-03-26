@@ -3,9 +3,6 @@ import { Router } from '@angular/router';
 import { SessionService } from '../../services/session/session.service';
 import { IdentificationService } from '../../services/identification/identification.service';
 
-const hiddenMenuClassName = 'user-info__menu';
-const visibleMenuClassName = 'user-info__menu user-info__menu_visible';
-
 @Component({
   selector: 'shared-header',
   templateUrl: './header.component.html',
@@ -16,15 +13,14 @@ export class HeaderComponent implements OnInit {
   public userLogin: string;
   public isAuth: boolean;
   public menuClassName: string;
+  public isMenuOpened = false;
 
   constructor(private sessionService: SessionService, private router: Router, private identificationService: IdentificationService) {
     this.identificationService.login.subscribe(login => this.userLogin = login);
     this.identificationService.tryIdentify();
-    this.menuClassName = hiddenMenuClassName;
   }
 
   ngOnInit() {
-
   }
 
   public logOut() {
@@ -40,10 +36,6 @@ export class HeaderComponent implements OnInit {
   }
 
   public toggleMenu() {
-    if (this.menuClassName === hiddenMenuClassName) {
-      this.menuClassName = visibleMenuClassName;
-    } else {
-      this.menuClassName = hiddenMenuClassName;
-    }
+    this.isMenuOpened = !this.isMenuOpened;
   }
 }

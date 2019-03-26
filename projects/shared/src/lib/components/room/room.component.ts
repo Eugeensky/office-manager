@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RequestInfo } from '../../models/request-info';
+import { RequestStatus } from '../../models/request-status';
 
 @Component({
   selector: 'shared-room',
@@ -9,20 +10,27 @@ import { RequestInfo } from '../../models/request-info';
 })
 export class RoomComponent implements OnInit {
 
+  public floorNumber: number;
+  public roomNumber: number;
+  public roomId: number;
+  public requestsInfo: RequestInfo[];
+  public RequestStatus = RequestStatus;
+
   constructor(private route: ActivatedRoute, private router: Router) {
     this.floorNumber = this.route.snapshot.queryParams.floorNumber;
     this.roomNumber = this.route.snapshot.queryParams.roomNumber;
     this.roomId = this.route.snapshot.queryParams.roomId;
     this.route.data.subscribe(data => {
       this.requestsInfo = data.requestsInfo;
-      this.requestsInfo.reverse();
+      this.requestsInfo.sort((x, y) => {
+        if (x.postDate < y.postDate) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
     });
   }
-
-  public floorNumber: number;
-  public roomNumber: number;
-  public roomId: number;
-  public requestsInfo: RequestInfo[];
 
   ngOnInit() {
   }
