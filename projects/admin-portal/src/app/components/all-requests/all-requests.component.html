@@ -1,34 +1,34 @@
 
 <div class="request" *ngFor="let requestInfo of requestsInfo">
   <div class="request__info">
-    <p class="request__static-text">
+    <p class="request__title">
       Request
-      <span class="request__info-text">#{{requestInfo.requestId}}</span>
+      <span class="request__value">#{{requestInfo.requestId}}</span>
     </p>
-    <p class="request__static-text">
+    <p class="request__title">
       Room
-      <span class="request__info-text">#{{requestInfo.roomNumber}}</span>
+      <span class="request__value">#{{requestInfo.roomNumber}}</span>
     </p>
-    <p class="request__static-text">
+    <p class="request__title">
       Status - 
-      <span class="request__info-text">{{RequestStatus[requestInfo.status]}}</span>
+      <span class="request__value">{{RequestStatus[requestInfo.status]}}</span>
     </p>
-    <p class="request__static-text">
+    <p class="request__title">
       RequestOwner -
-      <span class="request__info-text">{{requestInfo.requestOwner}}</span>
+      <span class="request__value">{{requestInfo.requestOwner}}</span>
     </p>
-    <p class="request__static-text">
+    <p class="request__title">
       Open at 
-      <span class="request__info-text">{{requestInfo.openDate | date:'short'}}</span>
+      <span class="request__value">{{requestInfo.openDate | date:'short'}}</span>
     </p>
     <button class="request__button" (click)="showMore(requestInfo.requestId)">Show more</button>
   </div>
   <div class="request__last-comment" *ngIf="requestInfo.commentOwner">
     <p class="request__last-comment-title">
       Last comment from
-      <span class="request__info-text">{{requestInfo.commentOwner}}</span>
+      <span class="request__value">{{requestInfo.commentOwner}}</span>
       at
-      <span class="request__info-text">{{requestInfo.postDate | date:'short'}}</span></p>
+      <span class="request__value">{{requestInfo.postDate | date:'short'}}</span></p>
     <p class="request__last-comment-text">{{requestInfo.text}}</p>
   </div>
 </div>
