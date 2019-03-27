@@ -7,13 +7,14 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class RoomResolveService implements Resolve<RequestInfo[]> {
+export class AllRequestsResolve implements Resolve<RequestInfo[]> {
 
   constructor(private http: HttpClient) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     RequestInfo[] | Observable<RequestInfo[]> | Promise<RequestInfo[]> {
 
-    return this.http.get<RequestInfo[]>(`requests/roomSummary/${route.queryParams.roomId}`);
+    return this.http.get<RequestInfo[]>(`requests/allSummary`);
   }
+
 }

@@ -20,7 +20,16 @@ export class RoomComponent implements OnInit {
     this.floorNumber = this.route.snapshot.queryParams.floorNumber;
     this.roomNumber = this.route.snapshot.queryParams.roomNumber;
     this.roomId = this.route.snapshot.queryParams.roomId;
-    this.route.data.subscribe(data => this.requestsInfo = data.requestsInfo);
+    this.route.data.subscribe(data => {
+      this.requestsInfo = data.requestsInfo;
+      this.requestsInfo.sort((x, y) => {
+        if (x.postDate < y.postDate) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+    });
   }
 
   ngOnInit() {

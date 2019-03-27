@@ -1,10 +1,4 @@
-<p class="room-number">
-  Room #{{roomNumber}}
-</p>
-<div class="back-buttons">
-  <button class="back-buttons__button" (click)="backToFloor()">Back to floor #{{floorNumber}}</button>
-  <button class="back-buttons__button" (click)="openRequest()">Open new request</button>
-</div>
+
 <div class="request" *ngFor="let requestInfo of requestsInfo">
   <div class="request__info">
     <p class="request__static-text">
@@ -12,11 +6,15 @@
       <span class="request__info-text">#{{requestInfo.requestId}}</span>
     </p>
     <p class="request__static-text">
+      Room
+      <span class="request__info-text">#{{requestInfo.roomNumber}}</span>
+    </p>
+    <p class="request__static-text">
       Status - 
       <span class="request__info-text">{{RequestStatus[requestInfo.status]}}</span>
     </p>
     <p class="request__static-text">
-      RequestOwner - 
+      RequestOwner -
       <span class="request__info-text">{{requestInfo.requestOwner}}</span>
     </p>
     <p class="request__static-text">
@@ -27,11 +25,11 @@
   </div>
   <div class="request__last-comment" *ngIf="requestInfo.commentOwner">
     <p class="request__last-comment-title">
-      Last comment from 
-      <span class="request__info-text">{{requestInfo.commentOwner}}</span> 
-      at 
-      <span class="request__info-text">{{requestInfo.postDate | date:'short'}}</span>
-    </p>
+      Last comment from
+      <span class="request__info-text">{{requestInfo.commentOwner}}</span>
+      at
+      <span class="request__info-text">{{requestInfo.postDate | date:'short'}}</span></p>
     <p class="request__last-comment-text">{{requestInfo.text}}</p>
   </div>
 </div>
+  

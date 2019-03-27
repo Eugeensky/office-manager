@@ -31,7 +31,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
-  public toAllUserRequests() { }
+  public toAllUserRequests() {
+    this.router.navigateByUrl('allRequests');
+  }
 
   public toggleMenu() {
     this.isMenuOpened = !this.isMenuOpened;
