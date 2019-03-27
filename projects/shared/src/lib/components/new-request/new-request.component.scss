@@ -8,53 +8,28 @@
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    &__textarea {
-        margin: 10px 0;
-        width: 460px;
-        border: 2px solid $main-color;
-        border-radius: 5px;
-        padding: 0 0 0 5px;
-        font-size: 1.4rem;
-        color: $main-color;
-        transition:.2s all ease;
-        min-height: 200px;
-        resize: vertical;
+  &__textarea {
+    @include input-area();  
+    min-height: 200px;
+  }
 
-        &:focus {
-            outline: none;
-            box-shadow: 0 0 3px 3px $secondary-color;
-        }
-    }
+  &__submit {
+    @include button();
+    height: 40px;
+    width: auto;
+    font-size: 1.4rem;
+    margin: auto 5px;
+    padding: 0 10px;
+  }
 
-    &__submit {
-        @include button();
-        height: 40px;
-        width: auto;
-        font-size: 1.4rem;
-        margin: auto 5px;
-        padding: 0 10px;
-    }
-
-    p {
-        color: $main-color;
-        font-size: 2rem;
-        font-weight: 600;
-    }
-
-    input:focus {
-        outline: none;
-        box-shadow: 0 0 3px 3px $secondary-color;
-    }
-
-}
-
-.error-message {
-    color: $secondary-color;
+  &__title {
+    color: $main-color;
     font-size: 2rem;
-    margin: 30px;
+    font-weight: 600;
+  }
 }
 

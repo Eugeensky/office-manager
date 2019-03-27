@@ -1,9 +1,8 @@
 <div class="form">
-  <p>Open new request in room #{{roomNumber}}</p>
-  <textarea class="form__textarea" [formControl]="requestControl"></textarea>
+  <p class="form__title">Open new request in room #{{roomNumber}}</p>
+  <textarea class="form__textarea" #requestControlEl [formControl]="requestControl"></textarea>
   <div class="form__buttons">
     <button class="form__submit" (click)="backToFloor()">Back to floor</button>
     <button class="form__submit" (click)="sendRequest()">Send</button>
   </div>
-  
 </div>

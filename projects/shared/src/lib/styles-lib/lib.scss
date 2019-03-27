@@ -8,3 +8,26 @@ $secondary-color:#cf6161;
   border-radius: 5px;
   cursor: pointer;
 }
+
+@mixin input-area() {
+  margin: 10px 0;
+  width: 100%;
+  border: 2px solid $main-color;
+  border-radius: 5px;
+  padding-left: 5px;
+  font-size: 1.4rem;
+  color: $main-color;
+  transition: .2s all ease;
+  min-height: 100px;
+  resize: vertical;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 3px 3px $secondary-color;
+  }
+
+  &.ng-dirty.ng-invalid {
+    border-color: $secondary-color;
+  }
+}
+
