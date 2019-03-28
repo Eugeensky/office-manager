@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NewRequestComponent implements OnInit {
 
+  @ViewChild('requestControlEl') requestControlEl: ElementRef;
   private floorNumber: number;
   private roomId: number;
   public requestControl: FormControl;
@@ -27,13 +28,17 @@ export class NewRequestComponent implements OnInit {
   }
 
   public sendRequest() {
-    if (this.requestControl.valid) {
-      this.http.post(`requests`, { roomId: this.roomId, text: `open: ${this.requestControl.value}` }).subscribe(isOpened => {
-        if (isOpened) {
-          this.router.navigateByUrl(`floors/${this.floorNumber}`);
-        }
-      });
+    if (!this.requestControl.valid) {
+      this.requestControl.markAsDirty();
+      this.requestControlEl.nativeElement.focus();
+      return;
     }
+
+    this.http.post(`requests`, { roomId: this.roomId, text: `Opened: ${this.requestControl.value}` }).subscribe(isOpened => {
+      if (isOpened) {
+        this.router.navigateByUrl(`floors/${this.floorNumber}`);
+      }
+    });
   }
 
   public backToFloor() {

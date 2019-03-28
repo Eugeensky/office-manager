@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Request } from 'projects/shared/src/lib/models/request';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { NewCommentModel } from 'projects/shared/src/lib/models/new-comment-model';
 import { RequestStatus } from 'projects/shared/src/lib/models/request-status';
 import { HttpClient } from '@angular/common/http';
@@ -14,11 +14,12 @@ import { Comment } from 'projects/shared/src/lib/models/comment';
 })
 export class RequestComponent implements OnInit {
 
+  @ViewChild('newCommentEl') newCommentEl: ElementRef;
   private roomId: number;
   private requestId: number;
 
   public requestInfo: Request;
-  public newComment = new FormControl();
+  public newComment = new FormControl('', Validators.required);
   public floorNumber: number;
   public roomNumber: string;
   public RequestStatus = RequestStatus;
@@ -51,6 +52,12 @@ export class RequestComponent implements OnInit {
   }
 
   public changeStatusWithComment(status: RequestStatus) {
+    if (!this.newComment.valid) {
+      this.newComment.markAsDirty();
+      this.newCommentEl.nativeElement.focus();
+      return;
+    }
+
     const commentText = `${this.requestInfo.status !== status ? RequestStatus[status] : 'Not changed'}: ${this.newComment.value}`;
     const newComment = new NewCommentModel(
       commentText,
@@ -62,7 +69,7 @@ export class RequestComponent implements OnInit {
       if (comment) {
         this.requestInfo.comments.unshift(comment);
         this.requestInfo.status = newComment.status;
-        this.newComment.setValue('');
+        this.newComment.reset();
       }
     });
   }
