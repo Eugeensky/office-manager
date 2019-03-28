@@ -3,7 +3,6 @@
 </p>
 <button class="back-button" (click)="backToOffice()">Back to office</button>
 <div class="floor-area">
-  <img class="floor-area__bg-img" src="assets/gray-bg-16x10.svg">
   <div class="floor-area__floor floor">
     <div class="floor__rooms rooms rooms_top-part">
       <div class="rooms__room room" *ngFor="let room of roomsTopPart">
@@ -11,9 +10,7 @@
         <button class="room__button" *ngIf="room.requestCount > 0" (click)="showRequests(room)">
           Show all {{room.requestCount}} requests
         </button>
-        <button class="room__button" (click)="openRequest(room)">
-          Open request
-        </button>
+        <div class="room__message" *ngIf="room.requestCount === 0">No requests</div>
       </div>
     </div>
     <div class="floor__hall"></div>
@@ -23,9 +20,7 @@
         <button class="room__button" *ngIf="room.requestCount > 0" (click)="showRequests(room)">
           Show all {{room.requestCount}} requests
         </button>
-        <button class="room__button" (click)="openRequest(room)">
-          Open request
-        </button>
+        <div class="room__message" *ngIf="room.requestCount === 0">No requests</div>
       </div>
     </div>
   </div>

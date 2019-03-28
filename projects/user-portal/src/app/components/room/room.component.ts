@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RequestInfo } from '../../models/request-info';
-import { RequestStatus } from '../../models/request-status';
+import { RequestStatus, RequestInfo } from 'projects/shared/src/public_api';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'shared-room',
+  selector: 'app-room',
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.scss']
 })
@@ -16,7 +16,7 @@ export class RoomComponent implements OnInit {
   public requestsInfo: RequestInfo[];
   public RequestStatus = RequestStatus;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.floorNumber = this.route.snapshot.queryParams.floorNumber;
     this.roomNumber = this.route.snapshot.queryParams.roomNumber;
     this.roomId = this.route.snapshot.queryParams.roomId;
@@ -44,5 +44,18 @@ export class RoomComponent implements OnInit {
   public showMore(requestId: number) {
     this.router.navigateByUrl(
       `request?floorNumber=${this.floorNumber}&roomId=${this.roomId}&roomNumber=${this.roomNumber}&requestId=${requestId}`);
+  }
+
+  public closeRequest(requestId: number) {
+    this.http.get<boolean>(`requests/close/${requestId}`).subscribe(isClosed => {
+      if (isClosed) {
+        for (const key in this.requestsInfo) {
+          if (this.requestsInfo[key].requestId === requestId) {
+            this.requestsInfo.splice(+key, 1);
+            break;
+          }
+        }
+      }
+    });
   }
 }

@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from 'projects/shared/src/lib/shared.module';
-import { LoginComponent, BuildingComponent, FloorComponent, NewRequestComponent, RoomComponent } from 'projects/shared/src/public_api';
+import { LoginComponent, BuildingComponent } from 'projects/shared/src/public_api';
+import { FloorComponent } from './components/floor/floor.component';
+import { RoomComponent } from './components/room/room.component';
+import { NewRequestComponent } from './components/new-request/new-request.component';
 import { BuildingResolveService } from 'projects/shared/src/lib/services/building-resolve/building-resolve.service';
 import { FloorResolveService } from 'projects/shared/src/lib/services/floor-resolve/floor-resolve.service';
 import { RequestResolveService } from 'projects/shared/src/lib/services/request-resolve/request-resolve.service';
