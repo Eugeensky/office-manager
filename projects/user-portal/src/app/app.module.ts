@@ -5,18 +5,22 @@ import { AuthInterceptor } from 'projects/shared/src/lib/interceptors/auth-inter
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './components/home/home.component';
 import { SharedModule } from 'projects/shared/src/lib/shared.module';
 import { RequestComponent } from './components/request/request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AllRequestsComponent } from './components/all-requests/all-requests.component';
+import { FloorComponent } from './components/floor/floor.component';
+import { RoomComponent } from './components/room/room.component';
+import { NewRequestComponent } from './components/new-request/new-request.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     RequestComponent,
-    AllRequestsComponent
+    AllRequestsComponent,
+    FloorComponent,
+    RoomComponent,
+    NewRequestComponent
   ],
   imports: [
     BrowserModule,

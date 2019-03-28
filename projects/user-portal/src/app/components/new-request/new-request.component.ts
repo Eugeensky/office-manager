@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'shared-new-request',
+  selector: 'app-new-request',
   templateUrl: './new-request.component.html',
   styleUrls: ['./new-request.component.scss']
 })
@@ -13,7 +13,7 @@ export class NewRequestComponent implements OnInit {
   @ViewChild('requestControlEl') requestControlEl: ElementRef;
   private floorNumber: number;
   private roomId: number;
-  public requestControl: FormControl;
+  public requestControl = new FormControl('', Validators.required);
   public roomNumber: number;
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
@@ -23,8 +23,8 @@ export class NewRequestComponent implements OnInit {
       this.roomNumber = params.roomNumber;
     });
   }
+
   ngOnInit() {
-    this.requestControl = new FormControl('', Validators.required);
   }
 
   public sendRequest() {

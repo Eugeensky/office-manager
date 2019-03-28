@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RoomInfo } from '../../models/room-info';
+import { RoomInfo } from 'projects/shared/src/public_api';
 
 @Component({
-  selector: 'shared-floor',
+  selector: 'app-floor',
   templateUrl: './floor.component.html',
   styleUrls: ['./floor.component.scss']
 })
@@ -34,10 +34,6 @@ export class FloorComponent implements OnInit {
 
   public backToOffice() {
     this.router.navigateByUrl('');
-  }
-
-  public openRequest(room: RoomInfo) {
-    this.router.navigateByUrl(`newRequest?floorNumber=${this.floorNumber}&roomId=${room.id}&roomNumber=${room.number}`);
   }
 
   public showRequests(room: RoomInfo) {

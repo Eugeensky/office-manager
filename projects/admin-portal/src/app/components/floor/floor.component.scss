@@ -1,4 +1,4 @@
-@import "../../styles-lib/lib.scss";
+@import "projects/shared/src/lib/styles-lib/lib.scss";
 
 $border: 4px solid black;
 $small-border: 2px solid black;
@@ -23,11 +23,15 @@ $bg-color: #CCC;
   position: relative;
   max-width: 960px;
   min-width: 450px;
+  height: auto;
   margin: auto;
   background-color: $bg-color;
 
-  &__bg-img {
+  &::after {
+    content: '';
+    display: block;
     width: 100%;
+    padding-bottom: 62.5%;
   }
 
   &__floor {
@@ -76,7 +80,7 @@ $bg-color: #CCC;
     transform: translateY(100%) translateX(-50%);
     border-top: 25px solid $bg-color; 
     border-right: 75px solid transparent;
-    filter: drop-shadow(4px 4px 0 black);
+    filter: drop-shadow(3px 3px 0 black);
   }
 
   &_bottom-part &__room::after {
@@ -88,7 +92,7 @@ $bg-color: #CCC;
     transform: translateY(-100%) translateX(-50%);
     border-bottom: 25px solid $bg-color; 
     border-left: 75px solid transparent;
-    filter: drop-shadow(-4px -4px 0 black);
+    filter: drop-shadow(-3px -3px 0 black);
   }
 }
 
@@ -106,6 +110,11 @@ $bg-color: #CCC;
     left: 5%;
     font-size: 5rem;
     z-index: 0;
+  }
+
+  &__message {
+    font-size: 2rem;
+    font-weight: 600;
   }
 
   &__button {
@@ -128,7 +137,7 @@ $bg-color: #CCC;
     margin: auto;
     background-color: $bg-color;
   
-    &__bg-img {
+    &::after {
       display: none;
     }
   
