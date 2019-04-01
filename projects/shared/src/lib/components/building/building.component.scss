@@ -232,8 +232,9 @@ $window-color: linear-gradient(225deg,#95CACE,#91ace5);
   }
 
   &__door {
+    display: flex;
+    justify-content: center;
     align-self: flex-end;
-    position: relative;
     border-top: $small-border;
     border-left: $small-border;
     border-right: $small-border;
@@ -243,10 +244,10 @@ $window-color: linear-gradient(225deg,#95CACE,#91ace5);
 
     &::before {
       content: '';
-      position: absolute;
-      left: calc(50% - 1px);
+      display: block;
+      width: 2px;
+      background: black;
       height: 100%;
-      border-left: $small-border;
     }
   }
 }

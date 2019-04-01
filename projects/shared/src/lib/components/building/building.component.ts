@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FloorInfo } from '../../models/floor-info';
-import {HostListener} from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'shared-building',
@@ -11,6 +11,9 @@ import {HostListener} from '@angular/core';
 export class BuildingComponent implements AfterViewInit {
 
   @ViewChild('floorScroll') floorScroll: ElementRef;
+  private scrollMargin = 5;
+  private defaultFloorsCount = 5;
+
   public floorsInfo: FloorInfo[];
   public isScrollOnBottom: boolean;
   public isScrollOnTop: boolean;
@@ -24,66 +27,58 @@ export class BuildingComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const floorsCount = this.floorsInfo.length;
-    const floorsOverScroll = floorsCount - 5;
-    this.floorScroll.nativeElement.onscroll = () => {
-      if (this.floorScroll.nativeElement.scrollTop >
-        ((this.floorScroll.nativeElement.scrollHeight / floorsCount) * floorsOverScroll - 5)) {
-        this.isScrollOnBottom = true;
-      } else {
-          this.isScrollOnBottom = false;
-      }
+    const floorsOverScroll = floorsCount - this.defaultFloorsCount;
 
-      if (this.floorScroll.nativeElement.scrollTop < 5) {
-        this.isScrollOnTop = true;
-      } else {
-        this.isScrollOnTop = false;
+    fromEvent(this.floorScroll.nativeElement, 'scroll').subscribe(() => {
+      this.isScrollOnBottom = this.floorScroll.nativeElement.scrollTop >
+        ((this.floorScroll.nativeElement.scrollHeight / floorsCount) * floorsOverScroll - this.scrollMargin);
+      this.isScrollOnTop = this.floorScroll.nativeElement.scrollTop < this.scrollMargin;
+    });
+
+    fromEvent(window, 'keydown').subscribe((event: KeyboardEvent) => {
+      if (event.key === 'ArrowUp') {
+        this.scrollUp();
       }
-    };
+      if (event.key === 'ArrowDown') {
+        this.scrollDown();
+      }
+    });
 
     this.floorScroll.nativeElement.scrollTop = (this.floorScroll.nativeElement.scrollHeight / floorsCount) * floorsOverScroll;
-  }
-
-  public scrollUp() {
-    if (this.isScrollOnTop) {
-      return;
-    }
-    const floorsCount = this.floorsInfo.length;
-    const oneFloorHeight = this.floorScroll.nativeElement.scrollHeight / floorsCount;
-    const currentFloor = Math.trunc(this.floorScroll.nativeElement.scrollTop / (oneFloorHeight + 5));
-    const newScrollTop = currentFloor * oneFloorHeight;
-    let i = 1;
-    for (let currentScrollTop = this.floorScroll.nativeElement.scrollTop; currentScrollTop > newScrollTop - 1; currentScrollTop--) {
-      setTimeout(() => this.floorScroll.nativeElement.scrollTop = currentScrollTop, i);
-      i++;
-    }
-  }
-
-  public scrollDown() {
-    if (this.isScrollOnBottom) {
-      return;
-    }
-    const floorsCount = this.floorsInfo.length;
-    const oneFloorHeight = this.floorScroll.nativeElement.scrollHeight / floorsCount;
-    const currentFloor = Math.trunc(this.floorScroll.nativeElement.scrollTop / (oneFloorHeight - 5));
-    const newScrollTop = (currentFloor + 1) * oneFloorHeight;
-    let i = 1;
-    for (let currentScrollTop = this.floorScroll.nativeElement.scrollTop; currentScrollTop < newScrollTop + 1; currentScrollTop++) {
-      setTimeout(() => this.floorScroll.nativeElement.scrollTop = currentScrollTop, i);
-      i++;
-    }
   }
 
   public goToFloor(floorNumber: number) {
     this.router.navigateByUrl(`floors/${floorNumber}`);
   }
 
-  @HostListener('window:keydown', ['$event'])
-  handleKeyDown(event: KeyboardEvent) {
-    if (event.key === 'ArrowUp') {
-      this.scrollUp();
+  public scrollUp() {
+    if (this.isScrollOnTop) {
+      return;
     }
-    if (event.key === 'ArrowDown') {
-      this.scrollDown();
+    this.moveScroll(true);
+  }
+
+  public scrollDown() {
+    if (this.isScrollOnBottom) {
+      return;
+    }
+    this.moveScroll(false);
+  }
+
+  private moveScroll(isItMovingUp: boolean) {
+    const sign = isItMovingUp ? 1 : -1;
+    const floorsCount = this.floorsInfo.length;
+    const oneFloorHeight = this.floorScroll.nativeElement.scrollHeight / floorsCount;
+    const currentFloor = Math.trunc(this.floorScroll.nativeElement.scrollTop / (oneFloorHeight + sign * this.scrollMargin));
+    const newScrollTop = isItMovingUp ? currentFloor * oneFloorHeight : (currentFloor + 1) * oneFloorHeight;
+    let delay = 1;
+
+    for (let currentScrollTop = this.floorScroll.nativeElement.scrollTop;
+      sign * newScrollTop + sign < sign * currentScrollTop;
+      currentScrollTop -= sign) {
+
+      setTimeout(() => this.floorScroll.nativeElement.scrollTop = currentScrollTop, delay);
+      delay++;
     }
   }
 }
