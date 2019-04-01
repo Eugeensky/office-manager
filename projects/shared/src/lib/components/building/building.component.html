@@ -1,7 +1,47 @@
 <div class="building-area">
-  <div class="building-area__content">
-    <div class="building-area__building"></div>
-    <div class="building-area__nav"></div>
+  <div class="building-area__content building">
+    <div class="building__roof roof">
+      <div class="roof__peak">       
+        <div class="roof__window"></div>
+        <div class="roof__window"></div>
+        <div class="roof__window"></div>
+      </div>
+      <div class="roof__peak">
+        <div class="roof__window"></div>
+        <div class="roof__window"></div>
+        <div class="roof__window"></div>
+      </div>
+    </div>
+    <div class="building__floors floors">
+      <div class="floors__content" #floorScroll>
+        <div class="floors__floor floor" *ngFor="let floorInfo of floorsInfo" (click)="goToFloor(floorInfo.number)">
+          <div class="floor__window">
+            <div class="floor__window-content window-content">
+                <span class="window-content__title">Floor#</span>
+                <span class="window-content__value">{{floorInfo.number}}</span>
+            </div>
+          </div>
+          <div class="floor__window "></div>
+          <div class="floor__window"></div>
+          <div class="floor__window"></div>
+          <div class="floor__window">
+            <div class="floor__window-content window-content">
+              <span class="window-content__title">Requests:</span>
+              <span class="window-content__value">{{floorInfo.requestCount}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="floors__nav">
+        <div class="floors__nav-item" [ngClass]="{'floors__nav-item--disabled': isScrollOnTop}" (click)="scrollUp()"></div>
+        <div class="floors__nav-item" [ngClass]="{'floors__nav-item--disabled': isScrollOnBottom}" (click)="scrollDown()"></div>
+      </div>
+    </div>
+    <div class="building__ground ground">
+      <div class="ground__window"></div>
+      <div class="ground__door"></div>
+      <div class="ground__window"></div>
+    </div>
   </div>
 </div>
 

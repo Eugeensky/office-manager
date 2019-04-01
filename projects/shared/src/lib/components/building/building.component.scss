@@ -2,8 +2,18 @@
 
 $border: 4px solid black;
 $small-border: 2px solid black;
-$building-color:  #CCC;
+$door-color: #b99983;
 $window-color: linear-gradient(225deg,#95CACE,#91ace5);
+
+@mixin building-bg() {
+  background-color: #e4d8b2;
+  background-image: url("data:image/svg+xml,%3Csvg width='21' height='22' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23b99983' fill-opacity='0.55'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@mixin building-bg-invert() {
+  background-color: #b99983;
+  background-image: url("data:image/svg+xml,%3Csvg width='21' height='22' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23e4d8b2' fill-opacity='0.55'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
 
 .building-area {
   position: relative;
@@ -18,44 +28,45 @@ $window-color: linear-gradient(225deg,#95CACE,#91ace5);
 
   &__content {
     position: absolute;
-    top:0;
+    top: 0;
+    right: 0;
     left: 0;
     bottom: 0;
-    right: 0;
-    display: flex;
-  }
-  &__building {
-    height: 100%;
-    flex-grow: 10;
-    background-color: #2e354e;
-  }
-  &__nav {
-    height: 66.666%;
-    flex-grow: 1;
-    background-color: #ba5600;
-    margin-top: 6.666%;
   }
 }
+
+.building {
+  display: flex;
+  flex-direction: column;
+
+  &__roof {
+    width: 90%;
+    flex-grow: 1;
+  }
+
+  &__floors {
+    width: 100%;
+    flex-grow: 10;
+  }
+
+  &__ground {
+    width: 90%;
+    flex-grow: 4;
+  }
+}
+
 .roof {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
-  
+
   &__peak {
-    position: relative;
     width: 30%;
+    height: 100%;
+    @include building-bg();
     border-left: $border;
     border-top: $border;
     border-right: $border;
-    background-color: $building-color;
-  }
-
-  &__windows {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -63,83 +74,157 @@ $window-color: linear-gradient(225deg,#95CACE,#91ace5);
 
   &__window {
     border: $small-border;
-    width: 7%;
+    width: 12%;
     height: 42%;
     background: $window-color;
   }
 }
 
-.floor {
-  position: relative;
-  cursor: pointer;
-  border-top: $border;
-  border-left: $border;
-  border-right: $border;
-  background-color: $building-color;
+.floors {
+  display: flex;
+  overflow: hidden;
+  &__content {
+    box-sizing: border-box;
+    border-left: $border;
+    border-top: $border;
+    border-right: $border;
+    width: 90%;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
 
-  &__windows {
+  &__floor {
+    height: 20%;
+  }
+
+  &__nav {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__nav-item {
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 80%;
+    height: 9%;
+    background-color: $main-color;
+    border: 2px solid $secondary-color;
+    border-radius: 50%;
+    margin: 40% 0;
+    transition: .2s ease;
+
+    &--disabled {
+      opacity: 0;
+      cursor: auto;
+    }
+    
+    &:first-child::after, &:last-child::after {
+      content: '';
+      width: 15px;
+      height: 15px;
+      border-top: 5px solid #fff;
+      border-left: 5px solid #fff;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+
+    &:first-child::after {
+      top: 6px;
+      bottom: 0;
+      transform: rotate(45deg);
+    }
+
+    &:last-child::after {
+      top: 0;
+      bottom: 6px;
+      transform: rotate(-135deg);
+    }
+
+    &:hover {
+      box-shadow: 0 0 10px 2px $secondary-color; 
+    }
+  }
+
+  &__floor {
+    flex-grow: 1;
+  }
+}
+
+.floor {
+  @include building-bg();
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: .2s ease;
+  cursor: pointer;
+  
+  &__window {
+    border: $small-border;
+    width: 12%;
+    height: 70%;
+    background: $window-color;
+    transition: .2s ease;
+    position: relative;
+  }
+
+  &__window-content {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
 
-  &__window {
-    border: $border;
-    width: 11.7%;
-    height: 70%;
-    background: $window-color;
-    transition: .2s ease;
-  }
-
-  &:hover &__window {
-    box-shadow: 0 0 2px 3px $secondary-color;
+  &:hover {
+    @include building-bg-invert();
   }
 }
 
-.window {
+.window-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  &__content {
+  &__title, &__value {
     color:white;
     text-shadow: -1px -1px 2px black,
                   -1px 1px 2px black,
                   1px -1px 2px black,
                   1px 1px 2px black;
-    font-size: 2rem;
     font-weight: 600;
+  }
 
-    &--caption {
-      font-size: 0.7rem;
-    }
+  &__title {
+    font-size: 0.7rem;
+  }
+
+  &__value {
+    font-size: 2rem;
   }
 }
 
 .ground {
+  box-sizing: border-box;
+  @include building-bg();
   border: $border;
-  position: relative;
-  background-color: $building-color;
-
-  &__windows {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
   &__window {
-    border: $border;
+    border: $small-border;
     width: 8.333%;
     height: 25%;
     background: $window-color;
@@ -149,33 +234,19 @@ $window-color: linear-gradient(225deg,#95CACE,#91ace5);
   &__door {
     align-self: flex-end;
     position: relative;
-    border-top: $border;
-    border-left: $border;
-    border-right: $border;
-    width: 33.333%;
+    border-top: $small-border;
+    border-left: $small-border;
+    border-right: $small-border;
+    width: 25%;
     height: 50%;
-    background: $window-color;
+    background: $door-color;
 
     &::before {
       content: '';
       position: absolute;
-      left: calc(50% - 2px);
+      left: calc(50% - 1px);
       height: 100%;
-      border-left: $border;
+      border-left: $small-border;
     }
-  }
-}
-
-.building {
-  display: none;
-  margin: auto;
-  box-sizing: border-box;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-
-  &__floor {
-    position: relative;
-    cursor: pointer;
   }
 }
