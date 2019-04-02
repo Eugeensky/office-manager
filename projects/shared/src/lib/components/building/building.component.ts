@@ -1,14 +1,17 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FloorInfo } from '../../models/floor-info';
-import { fromEvent } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
+import { takeWhile, takeUntil } from 'rxjs/internal/operators';
 
 @Component({
   selector: 'shared-building',
   templateUrl: './building.component.html',
   styleUrls: ['./building.component.scss']
 })
-export class BuildingComponent implements AfterViewInit {
+export class BuildingComponent implements AfterViewInit, OnDestroy {
+
+  private ngUnsubscribe = new Subject();
 
   @ViewChild('floorScroll') floorScroll: ElementRef;
   private scrollMargin = 5;
@@ -29,13 +32,13 @@ export class BuildingComponent implements AfterViewInit {
     const floorsCount = this.floorsInfo.length;
     const floorsOverScroll = floorsCount - this.defaultFloorsCount;
 
-    fromEvent(this.floorScroll.nativeElement, 'scroll').subscribe(() => {
+    fromEvent(this.floorScroll.nativeElement, 'scroll').pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => {
       this.isScrollOnBottom = this.floorScroll.nativeElement.scrollTop >
         ((this.floorScroll.nativeElement.scrollHeight / floorsCount) * floorsOverScroll - this.scrollMargin);
       this.isScrollOnTop = this.floorScroll.nativeElement.scrollTop < this.scrollMargin;
     });
 
-    fromEvent(window, 'keydown').subscribe((event: KeyboardEvent) => {
+    fromEvent(window, 'keydown').pipe(takeUntil(this.ngUnsubscribe)).subscribe((event: KeyboardEvent) => {
       if (event.key === 'ArrowUp') {
         this.scrollUp();
       }
@@ -45,6 +48,11 @@ export class BuildingComponent implements AfterViewInit {
     });
 
     this.floorScroll.nativeElement.scrollTop = (this.floorScroll.nativeElement.scrollHeight / floorsCount) * floorsOverScroll;
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   public goToFloor(floorNumber: number) {
