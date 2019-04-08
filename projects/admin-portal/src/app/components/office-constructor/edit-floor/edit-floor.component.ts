@@ -1,35 +1,31 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { FloorPlan } from '../../../models/floor-plan';
 import { RoomPlan } from '../../../models/room-plan';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-edit-floor',
   templateUrl: './edit-floor.component.html',
   styleUrls: ['./edit-floor.component.scss']
 })
-export class EditFloorComponent implements OnInit {
+export class EditFloorComponent implements OnChanges {
 
   public roomsFormGroup: FormGroup = this.formBuilder.group({floorNumber: '', rooms: {}});
   public updateStatus: string;
   private floorPlan: FloorPlan;
-  private floorNumber: number;
 
   public isUpdated: boolean;
-  @Input() floorNumberObs: Observable<number>;
+  @Input() floorNumber: number;
   @Output() floorDeleted: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
-  ngOnInit() {
-    this.floorNumberObs.subscribe(floorNumber => {
-      this.floorNumber = floorNumber;
-      this.http.get<FloorPlan>(`floors/numbers/${this.floorNumber}`).subscribe(floorPlan => {
-        this.floorPlan = floorPlan;
-        this.createRoomsGroup();
-      });
+  ngOnChanges(changes: SimpleChanges) {
+    this.floorNumber = changes.floorNumber.currentValue;
+    this.http.get<FloorPlan>(`floors/numbers/${this.floorNumber}`).subscribe(floorPlan => {
+      this.floorPlan = floorPlan;
+      this.createRoomsGroup();
     });
   }
 

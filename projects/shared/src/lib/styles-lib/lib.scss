@@ -1,5 +1,7 @@
 $main-color:#2F4F4E;
 $secondary-color:#B97A58;
+$success-color: rgb(31, 153, 0);
+$error-color: rgb(199, 0, 0);
 
 @mixin button() {
   border: 2px solid $secondary-color;

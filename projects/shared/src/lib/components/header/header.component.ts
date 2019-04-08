@@ -8,7 +8,7 @@ import { IdentificationService } from '../../services/identification/identificat
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() title;
   public userLogin: string;
   public isAuth: boolean;
@@ -18,9 +18,6 @@ export class HeaderComponent implements OnInit {
   constructor(private sessionService: SessionService, private router: Router, private identificationService: IdentificationService) {
     this.identificationService.login.subscribe(login => this.userLogin = login);
     this.identificationService.tryIdentify();
-  }
-
-  ngOnInit() {
   }
 
   public logOut() {

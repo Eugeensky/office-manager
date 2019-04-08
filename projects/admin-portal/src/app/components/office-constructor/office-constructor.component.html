@@ -8,5 +8,5 @@
 
 <div class="ctor-settings">
   <app-new-floor *ngIf="!isEditMode" (floorAdded)="addFloor($event)"></app-new-floor>
-  <app-edit-floor [floorNumberObs]="editingFloor" *ngIf="isEditMode" (floorDeleted)="deleteFloor($event)"></app-edit-floor>
+  <app-edit-floor [floorNumber]="editingFloor" *ngIf="isEditMode" (floorDeleted)="deleteFloor($event)"></app-edit-floor>
 </div>

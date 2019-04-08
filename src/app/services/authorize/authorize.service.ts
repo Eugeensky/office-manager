@@ -9,22 +9,22 @@ import { Subject, Observable } from 'rxjs';
 })
 export class AuthorizeService {
 
-  private _isRegistred: Subject<boolean> = new Subject<boolean>();
+  private _isRegistered: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
-    this.isRegistred = this._isRegistred.asObservable();
-    this._isRegistred.next(false);
+    this.isRegistered = this._isRegistered.asObservable();
+    this._isRegistered.next(false);
   }
 
-  public isRegistred: Observable<boolean>;
+  public isRegistered: Observable<boolean>;
 
   public logIn(user: User) {
     this.http.post(`${environment.urls.api}/account/token`, user).subscribe({
       next: (data: AuthResponse) => {
-        this._isRegistred.next(true);
+        this._isRegistered.next(true);
         this.redirectToApp(data);
       },
-      error: (error) => this._isRegistred.next(false)
+      error: (error) => this._isRegistered.next(false)
     });
   }
 

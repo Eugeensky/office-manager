@@ -12,7 +12,7 @@ import { Comment } from 'projects/shared/src/lib/models/comment';
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.scss']
 })
-export class RequestComponent implements OnInit {
+export class RequestComponent {
 
   @ViewChild('newCommentEl') newCommentEl: ElementRef;
   private roomId: number;
@@ -34,9 +34,6 @@ export class RequestComponent implements OnInit {
     this.floorNumber = this.route.snapshot.queryParams.floorNumber;
     this.roomId = this.route.snapshot.queryParams.roomId;
     this.requestId = this.route.snapshot.queryParams.requestId;
-  }
-
-  ngOnInit() {
   }
 
   public backToRoom() {

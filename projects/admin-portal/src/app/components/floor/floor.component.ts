@@ -7,7 +7,7 @@ import { RoomInfo } from 'projects/shared/src/public_api';
   templateUrl: './floor.component.html',
   styleUrls: ['./floor.component.scss']
 })
-export class FloorComponent implements OnInit {
+export class FloorComponent {
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.route.data.subscribe(data => {
@@ -29,8 +29,6 @@ export class FloorComponent implements OnInit {
   public floorNumber: number;
   public roomsTopPart: RoomInfo[];
   public roomsBottomPart: RoomInfo[];
-  ngOnInit() {
-  }
 
   public backToOffice() {
     this.router.navigateByUrl('');

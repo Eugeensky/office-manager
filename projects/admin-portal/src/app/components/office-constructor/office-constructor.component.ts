@@ -7,25 +7,19 @@ import { Observable, Subject } from 'rxjs';
   templateUrl: './office-constructor.component.html',
   styleUrls: ['./office-constructor.component.scss']
 })
-export class OfficeConstructorComponent implements OnInit {
+export class OfficeConstructorComponent {
 
   public floorNumbers: number[];
   public isEditMode = false;
-  private editingFloorSubject = new Subject<number>();
-  public editingFloor = new Observable<number>();
+  public editingFloor: number;
 
   constructor(private route: ActivatedRoute) {
-    this.editingFloor = this.editingFloorSubject.asObservable();
     this.route.data.subscribe(data => this.floorNumbers = data.floorNumbers);
-    this.editingFloorSubject.next(0);
-  }
-
-  ngOnInit() {
   }
 
   public editFloor(floorNumber: number) {
     this.isEditMode = true;
-    setTimeout(() => this.editingFloorSubject.next(floorNumber), 0);
+    this.editingFloor = floorNumber;
   }
 
   public newFloor() {

@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './new-floor.component.html',
   styleUrls: ['./new-floor.component.scss']
 })
-export class NewFloorComponent implements OnInit {
+export class NewFloorComponent {
 
   public roomsFormGroup: FormGroup;
   public addStatus: string;
@@ -17,9 +17,6 @@ export class NewFloorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.createRoomsGroup();
-  }
-
-  ngOnInit() {
   }
 
   public deleteRoom(index: number) {
@@ -32,18 +29,19 @@ export class NewFloorComponent implements OnInit {
   }
 
   public saveSettings() {
+    this.roomsFormGroup.controls.floorNumber.valueChanges.subscribe(console.log);
     if (!this.roomsFormGroup.valid) {
       if (!this.roomsFormGroup.controls.floorNumber.valid) {
       this.roomsFormGroup.controls.floorNumber.markAsDirty();
       }
-      (this.roomsFormGroup.controls.rooms as FormArray).controls.forEach(control => {
+      (this.roomsFormGroup.controls.rooms as FormArray).controls.forEach((control: FormGroup) => {
         if (!control.valid) {
-          (control as FormGroup).controls.roomNumber.markAsDirty();
+          control.controls.roomNumber.markAsDirty();
         }
       });
       return;
     }
-    const newFloorPlan: FloorPlan = new FloorPlan();
+    const newFloorPlan = new FloorPlan();
     newFloorPlan.floorNumber = +this.roomsFormGroup.value.floorNumber;
     newFloorPlan.rooms = this.roomsFormGroup.value.rooms;
     this.http.post<boolean>('floors/add', newFloorPlan).subscribe(isAdded => {

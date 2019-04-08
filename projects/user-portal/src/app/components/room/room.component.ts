@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.scss']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent {
 
   public floorNumber: number;
   public roomNumber: number;
@@ -30,9 +30,6 @@ export class RoomComponent implements OnInit {
         }
       });
     });
-  }
-
-  ngOnInit() {
   }
 
   public backToFloor() {
