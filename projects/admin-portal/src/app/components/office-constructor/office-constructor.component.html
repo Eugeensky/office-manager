@@ -1,0 +1,12 @@
+<div class="ctor-menu">
+    <button class="ctor-menu__new-btn" (click)="newFloor()">New Floor</button>
+    <select (change)="editFloor(+$event.target.value)" class="ctor-menu__edit-select">
+      <option selected disabled>Edit existed floor</option>
+      <option value="{{floorNumber}}" *ngFor="let floorNumber of floorNumbers" class="ctor-menu__edit-option">Floor #{{floorNumber}}</option>
+    </select>
+</div>
+
+<div class="ctor-settings">
+  <app-new-floor *ngIf="!isEditMode" (floorAdded)="addFloor($event)"></app-new-floor>
+  <app-edit-floor [floorNumberObs]="editingFloor" *ngIf="isEditMode" (floorDeleted)="deleteFloor($event)"></app-edit-floor>
+</div>

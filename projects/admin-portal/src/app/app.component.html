@@ -1,5 +1,9 @@
 <div class="page">
-  <shared-header [title]="title"></shared-header>
+  <shared-header [title]="title">
+    <div class="user-info__menu-item" (click)="toAllUserRequests()">Show all requests</div>
+    <div class="user-info__menu-item" (click)="toConstructor()">Constructor</div>
+    <div class="user-info__menu-item" (click)="logOut()">Log Out</div>
+  </shared-header>
   <div class="page__content">
     <router-outlet></router-outlet>
   </div>

@@ -1,0 +1,26 @@
+@import "projects/shared/src/lib/styles-lib/lib.scss";
+
+.ctor-menu {
+  margin: auto;
+  display: flex;
+  width: 240px;
+  justify-content: center;
+  flex-direction: column;
+
+  &__new-btn, &__edit-select {
+    margin-bottom: 10px;
+    @include button();
+    height: 30px;
+    font-size: 1.2rem;
+  }
+
+  &__edit-select {
+    padding-left: 10px;
+  }
+}
+
+.ctor-settings {
+  margin: auto;
+  width: 400px;
+  justify-content: center;
+}

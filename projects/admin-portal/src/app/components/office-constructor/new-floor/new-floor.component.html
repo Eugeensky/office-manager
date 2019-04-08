@@ -1,0 +1,21 @@
+<form [formGroup]="roomsFormGroup" class="ctor-form">
+    <p class="ctor-form__title">Floor number</p>
+    <div class="ctor-form__floor-number floor-number">
+      <input type="text" class="floor-number__input" formControlName="floorNumber">
+    </div>
+    <p class="ctor-form__title">Rooms</p>
+    <div class="ctor-form__rooms rooms" formArrayName="rooms">
+      <div [formGroupName]="i" *ngFor="let control of roomsFormGroup.controls.rooms.controls; index as i" class="rooms__room">
+        <input type="text" formControlName="roomNumber" class="rooms__number-input">
+        <div class="rooms__delete-btn" (click)="deleteRoom(i)"></div>
+      </div>
+      <div class="rooms__add-btn" (click)="addRoom()"></div>
+    </div>
+    <div class="rooms__buttons">
+      <button (click)="createRoomsGroup()" class="rooms__button">Reset</button>
+      <button (click)="saveSettings()" class="rooms__button">Save</button>
+    </div>
+    <p *ngIf="addStatus" class="ctor-form__status-message" [ngClass]="{'ctor-form__status-message--error': !isAdded}">{{addStatus}}</p>
+  </form>
+  
+  
