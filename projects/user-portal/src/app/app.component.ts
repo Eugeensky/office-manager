@@ -8,8 +8,10 @@ import { SessionService } from 'projects/shared/src/public_api';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  public title = 'user portal';
+
   constructor(private sessionService: SessionService, private router: Router) { }
-  title = 'user portal';
 
   public logOut() {
     this.sessionService.closeSession();
