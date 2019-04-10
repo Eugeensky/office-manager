@@ -7,7 +7,7 @@ import { RequestStatus, RequestInfo } from 'projects/shared/src/public_api';
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.scss']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent {
 
   public floorNumber: number;
   public roomNumber: number;
@@ -29,9 +29,6 @@ export class RoomComponent implements OnInit {
         }
       });
     });
-  }
-
-  ngOnInit() {
   }
 
   public backToFloor() {

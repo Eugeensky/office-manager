@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './new-request.component.html',
   styleUrls: ['./new-request.component.scss']
 })
-export class NewRequestComponent implements OnInit {
+export class NewRequestComponent {
 
   @ViewChild('requestControlEl') requestControlEl: ElementRef;
   private floorNumber: number;
@@ -22,9 +22,6 @@ export class NewRequestComponent implements OnInit {
       this.roomId = params.roomId;
       this.roomNumber = params.roomNumber;
     });
-  }
-
-  ngOnInit() {
   }
 
   public sendRequest() {

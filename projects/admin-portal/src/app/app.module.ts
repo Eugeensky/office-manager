@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AllRequestsComponent } from './components/all-requests/all-requests.component';
 import { FloorComponent } from './components/floor/floor.component';
 import { RoomComponent } from './components/room/room.component';
+import { OfficeConstructorComponent } from './components/office-constructor/office-constructor.component';
+import { NewFloorComponent } from './components/office-constructor/new-floor/new-floor.component';
+import { EditFloorComponent } from './components/office-constructor/edit-floor/edit-floor.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { RoomComponent } from './components/room/room.component';
     RequestComponent,
     AllRequestsComponent,
     FloorComponent,
-    RoomComponent
+    RoomComponent,
+    OfficeConstructorComponent,
+    NewFloorComponent,
+    EditFloorComponent
   ],
   imports: [
     BrowserModule,

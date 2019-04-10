@@ -11,6 +11,10 @@ import { RequestResolveService } from 'projects/shared/src/lib/services/request-
 import { RequestComponent } from './components/request/request.component';
 import { AllRequestsComponent } from './components/all-requests/all-requests.component';
 import { AllRequestsResolve } from 'projects/shared/src/lib/services/all-requests-resolve/all-requests-resolve.service';
+import { OfficeConstructorComponent } from './components/office-constructor/office-constructor.component';
+import { NewFloorComponent } from './components/office-constructor/new-floor/new-floor.component';
+import { EditFloorComponent } from './components/office-constructor/edit-floor/edit-floor.component';
+import { ConstructorResolveService } from './services/constructor-resolve/constructor-resolve.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -47,6 +51,13 @@ const routes: Routes = [
     component: AllRequestsComponent,
     resolve: {
       requestsInfo: AllRequestsResolve
+    }
+  },
+  {
+    path: 'constructor',
+    component: OfficeConstructorComponent,
+    resolve : {
+      floorNumbers: ConstructorResolveService
     }
   },
 ];

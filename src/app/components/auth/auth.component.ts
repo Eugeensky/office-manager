@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit {
 
   public logIn() {
     if (this.authForm.valid) {
-      this.authService.isRegistred.subscribe(isReg => {
+      this.authService.isRegistered.subscribe(isReg => {
         this.errorMessage = isReg ? '' : 'Invalid login or password';
       });
       this.authService.logIn(this.authForm.value);

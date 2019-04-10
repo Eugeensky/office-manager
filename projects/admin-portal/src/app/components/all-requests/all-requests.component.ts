@@ -8,7 +8,7 @@ import { RequestStatus } from 'projects/shared/src/lib/models/request-status';
   templateUrl: './all-requests.component.html',
   styleUrls: ['./all-requests.component.scss']
 })
-export class AllRequestsComponent implements OnInit {
+export class AllRequestsComponent {
 
   public requestsInfo: RequestInfo[];
   public RequestStatus = RequestStatus;
@@ -24,9 +24,6 @@ export class AllRequestsComponent implements OnInit {
         }
       });
     });
-  }
-
-  ngOnInit() {
   }
 
   public showMore(requestId: number) {
